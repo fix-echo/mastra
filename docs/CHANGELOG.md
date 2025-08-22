@@ -2,163 +2,163 @@
 
 ## 0.1.2
 
-### Patch Changes
+### 补丁变更
 
-- e3212c4: Removes references to unimplemented workflow APIs
-- 82197f8: Update PG vector to allow for multiple index types
-- 99dcdb5: Inject primitives into condition function, and renames getStepPayload to getStepResult.
-- 2e0fe6d: Added example and updated docs
+- e3212c4: 移除对未实现工作流 API 的引用
+- 82197f8: 更新 PG 向量以允许多种索引类型
+- 99dcdb5: 向条件函数中注入原语，并将 getStepPayload 重命名为 getStepResult。
+- 2e0fe6d: 添加示例并更新文档
 
 ## 0.1.2-alpha.2
 
-### Patch Changes
+### 补丁变更
 
-- e3212c4: Removes references to unimplemented workflow APIs
-- 99dcdb5: Inject primitives into condition function, and renames getStepPayload to getStepResult.
+- e3212c4: 移除对未实现工作流 API 的引用
+- 99dcdb5: 向条件函数中注入原语，并将 getStepPayload 重命名为 getStepResult。
 
 ## 0.1.2-alpha.1
 
-### Patch Changes
+### 补丁变更
 
-- 82197f8: Update PG vector to allow for multiple index types
+- 82197f8: 更新 PG 向量以允许多种索引类型
 
 ## 0.1.2-alpha.0
 
-### Patch Changes
+### 补丁变更
 
-- 2e0fe6d: Added example and updated docs
+- 2e0fe6d: 添加示例并更新文档
 
 ## 0.1.1
 
-### Patch Changes
+### 补丁变更
 
-- d59f1a8: Added example docs for evals and export metricJudge
+- d59f1a8: 为评估添加示例文档并导出 metricJudge
 
 ## 0.1.1-alpha.0
 
-### Patch Changes
+### 补丁变更
 
-- d59f1a8: Added example docs for evals and export metricJudge
+- d59f1a8: 为评估添加示例文档并导出 metricJudge
 
 ## 0.1.0
 
-### Minor Changes
+### 次要变更
 
-- 74b3078: Reduce verbosity in workflows API
-- 8b416d9: Breaking changes
+- 74b3078: 减少工作流 API 中的冗长性
+- 8b416d9: 破坏性变更
 
-### Patch Changes
+### 补丁变更
 
-- 016493a: Deprecate metrics in favor of evals
-- 5fdc87c: Update evals storage in attachListeners
-- 7892533: Updated test evals to use Mastra Storage
-- 9c10484: update all packages
-- ab04ad9: Update imports in docs
-- a10b7a3: Implemented new filtering for vectorQueryTool and updated docs
+- 016493a: 弃用指标，改用评估
+- 5fdc87c: 更新 attachListeners 中的评估存储
+- 7892533: 更新测试评估以使用 Mastra 存储
+- 9c10484: 更新所有包
+- ab04ad9: 更新文档中的导入
+- a10b7a3: 实现了 vectorQueryTool 的新过滤功能并更新了文档
 
 ## 0.1.0-alpha.6
 
-### Patch Changes
+### 补丁变更
 
-- 016493a: Deprecate metrics in favor of evals
+- 016493a: 弃用指标，改用评估
 
 ## 0.1.0-alpha.5
 
-### Patch Changes
+### 补丁变更
 
-- 5fdc87c: Update evals storage in attachListeners
+- 5fdc87c: 更新 attachListeners 中的评估存储
 
 ## 0.1.0-alpha.4
 
-### Patch Changes
+### 补丁变更
 
-- 7892533: Updated test evals to use Mastra Storage
+- 7892533: 更新测试评估以使用 Mastra 存储
 
 ## 0.1.0-alpha.3
 
-### Minor Changes
+### 次要变更
 
-- 74b3078: Reduce verbosity in workflows API
+- 74b3078: 减少工作流 API 中的冗长性
 
 ## 0.1.0-alpha.2
 
-### Minor Changes
+### 次要变更
 
-- 8b416d9: Breaking changes
+- 8b416d9: 破坏性变更
 
-### Patch Changes
+### 补丁变更
 
-- 9c10484: update all packages
+- 9c10484: 更新所有包
 
 ## 0.0.1-alpha.1
 
-### Patch Changes
+### 补丁变更
 
-- ab04ad9: Update imports in docs
+- ab04ad9: 更新文档中的导入
 
 ## 0.0.1-alpha.0
 
-### Patch Changes
+### 补丁变更
 
-- a10b7a3: Implemented new filtering for vectorQueryTool and updated docs
+- a10b7a3: 实现了 vectorQueryTool 的新过滤功能并更新了文档
 
 ## 0.1.1-alpha.25
 
-### Patch Changes
+### 补丁变更
 
-- 8105fae: Split embed into embed and embedMany to handle different return types
+- 8105fae: 将 embed 拆分为 embed 和 embedMany 以处理不同的返回类型
 
 ## 0.1.1-alpha.24
 
-### Patch Changes
+### 补丁变更
 
-- 9c0d010: Deprecated Reranker in favor of rerank function (BREAKING CHANGE)
+- 9c0d010: 弃用 Reranker，改用 rerank 函数（破坏性变更）
 
 ## 0.1.1-alpha.23
 
-### Patch Changes
+### 补丁变更
 
-- 3427b95: Updated docs to include intermediate rag examples (metadata filtering, query filters, etc)
+- 3427b95: 更新文档以包含中间 rag 示例（元数据过滤、查询过滤等）
 
 ## 0.1.1-alpha.22
 
-### Patch Changes
+### 补丁变更
 
-- 0d5a03d: Vector store modules
+- 0d5a03d: 向量存储模块
 
 ## 0.1.1-alpha.21
 
-### Patch Changes
+### 补丁变更
 
-- ee856f3: Updated pg filter function and updated docs and example
+- ee856f3: 更新了 pg 过滤函数并更新了文档和示例
 
 ## 0.1.1-alpha.20
 
-### Patch Changes
+### 补丁变更
 
-- 9ade36e: Changed measure for evals, added endpoints, attached metrics to agent, added ui for evals in playground, and updated docs
+- 9ade36e: 更改了评估的度量，添加了端点，将指标附加到代理，在 playground 中为评估添加了 UI，并更新了文档
 
 ## 0.1.1-alpha.19
 
-### Patch Changes
+### 补丁变更
 
-- ceb8086: Added hallucination metric and doc
+- ceb8086: 添加了幻觉指标和文档
 
 ## 0.1.1-alpha.18
 
-### Patch Changes
+### 补丁变更
 
-- 27c933f: Added summarization and doc
-- 07f45e7: Update evals to include all verdicts and updated docs
+- 27c933f: 添加了摘要和文档
+- 07f45e7: 更新评估以包含所有裁决并更新了文档
 
 ## 0.1.1-alpha.17
 
-### Patch Changes
+### 补丁变更
 
-- c056555: Added faithfulness and updated docs
+- c056555: 添加了忠实度并更新了文档
 
 ## 0.1.1-alpha.16
 
-### Patch Changes
+### 补丁变更
 
-- 876b8a2: Rename difference metric to textual difference metric
+- 876b8a2: 将差异指标重命名为文本差异指标

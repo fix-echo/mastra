@@ -1,33 +1,33 @@
 # @mastra/auth-auth0
 
-A Mastra authentication provider for Auth0 integration. This package provides seamless authentication and authorization using Auth0's JWT tokens.
+用于 Auth0 集成的 Mastra 认证提供者。该包通过 Auth0 的 JWT token 提供无缝的认证和授权。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/auth-auth0
-# or
+# 或者
 yarn add @mastra/auth-auth0
-# or
+# 或者
 pnpm add @mastra/auth-auth0
 ```
 
-## Usage
+## 用法
 
 ```typescript
 import { Mastra } from '@mastra/core';
 import { MastraAuthAuth0 } from '@mastra/auth-auth0';
 
-// Initialize with options
+// 使用配置初始化
 const auth0Provider = new MastraAuthAuth0({
   domain: 'your-tenant.auth0.com',
   audience: 'your-api-identifier',
 });
 
-// Or use environment variables
+// 或者使用环境变量
 const auth0Provider = new MastraAuthAuth0();
 
-// Enable auth in Mastra
+// 在 Mastra 中启用认证
 const mastra = new Mastra({
   ...
   server: {
@@ -36,32 +36,32 @@ const mastra = new Mastra({
 });
 ```
 
-## Configuration
+## 配置
 
-The package can be configured either through constructor options or environment variables:
+该包可以通过构造函数选项或环境变量进行配置：
 
-### Constructor Options
+### 构造函数选项
 
 ```typescript
 interface MastraAuthAuth0Options {
-  domain?: string; // Your Auth0 domain
-  audience?: string; // Your Auth0 API identifier
+  domain?: string; // 您的 Auth0 域名
+  audience?: string; // 您的 Auth0 API 标识符
 }
 ```
 
-### Environment Variables
+### 环境变量
 
-- `AUTH0_DOMAIN`: Your Auth0 domain (e.g., 'your-tenant.auth0.com')
-- `AUTH0_AUDIENCE`: Your Auth0 API identifier
+- `AUTH0_DOMAIN`: 您的 Auth0 域名 (例如: 'your-tenant.auth0.com')
+- `AUTH0_AUDIENCE`: 您的 Auth0 API 标识符
 
-## Features
+## 功能特性
 
-- JWT token verification using Auth0's JWKS
-- Automatic token validation against Auth0's issuer
-- Audience validation
-- Type-safe user payload
+- 使用 Auth0 的 JWKS 进行 JWT token 验证
+- 根据 Auth0 的发行者自动验证 token
+- Audience 验证
+- 类型安全的用户负载
 
-## Example
+## 示例
 
 ```typescript
 import { MastraAuthAuth0 } from '@mastra/auth-auth0';
@@ -71,19 +71,19 @@ const auth0Provider = new MastraAuthAuth0({
   audience: 'your-api-identifier',
 });
 
-// Authenticate a token
+// 验证 token
 const user = await auth0Provider.authenticateToken('your-jwt-token');
 
-// Authorize a user
+// 授权用户
 const isAuthorized = await auth0Provider.authorizeUser(user);
 ```
 
-## Requirements
+## 要求
 
-- Node.js 16 or higher
-- Auth0 account and configured application
-- Valid Auth0 domain and API identifier
+- Node.js 16 或更高版本
+- Auth0 账户和已配置的应用程序
+- 有效的 Auth0 域名和 API 标识符
 
-## License
+## 许可
 
 MIT

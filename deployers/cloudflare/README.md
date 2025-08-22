@@ -1,23 +1,23 @@
 # @mastra/deployer-cloudflare
 
-A Cloudflare Workers deployer for Mastra applications.
+适用于 Mastra 应用的 Cloudflare Workers 部署器。
 
-## Features
+## 功能特性
 
-- Deploy Mastra applications to Cloudflare Workers
-- Configure custom domains and routes
-- Support for worker namespaces
-- Automatic environment variable configuration
+- 部署 Mastra 应用到 Cloudflare Workers
+- 配置自定义域名和路由
+- 支持 worker 命名空间
+- 环境变量自动配置
 
-## Installation
+## 安装
 
 ```bash
 pnpm add @mastra/deployer-cloudflare
 ```
 
-## Usage
+## 用法
 
-The Cloudflare deployer is used as part of the Mastra framework:
+Cloudflare 部署器作为 Mastra 框架的一部分使用：
 
 ```typescript
 import { Mastra } from '@mastra/core';
@@ -42,35 +42,35 @@ const deployer = new CloudflareDeployer({
 
 const mastra = new Mastra({
   deployer,
-  // ... other Mastra configuration options
+  // ... 其他 Mastra 配置选项
 });
 ```
 
-## Configuration
+## 配置
 
-### Constructor Options
+### 构造函数选项
 
-- `scope` (required): Your Cloudflare account ID
-- `projectName`: Name of your worker project
-- `routes`: Array of route configurations for your worker
-  - `pattern`: URL pattern to match
-  - `zone_name`: Domain zone name
-  - `custom_domain`: Whether to use a custom domain
-- `workerNamespace`: Namespace for your worker
-- `auth`: Cloudflare authentication details
-  - `apiToken`: Your Cloudflare API token
-  - `apiEmail`: Your Cloudflare account email
+- `scope` (必需): 您的 Cloudflare 账户 ID
+- `projectName`: 您的 worker 项目名称
+- `routes`: 您的 worker 路由配置数组
+  - `pattern`: 要匹配的 URL 模式
+  - `zone_name`: 域名区域名称
+  - `custom_domain`: 是否使用自定义域名
+- `workerNamespace`: 您的 worker 命名空间
+- `auth`: Cloudflare 认证详情
+  - `apiToken`: 您的 Cloudflare API token
+  - `apiEmail`: 您的 Cloudflare 账户邮箱
 
-## Environment Variables
+## 环境变量
 
-The deployer will automatically load environment variables from:
+部署器将自动从以下位置加载环境变量：
 
-- `.env` files in your project
-- Environment variables passed through the Mastra configuration
+- 项目中的 `.env` 文件
+- 通过 Mastra 配置传递的环境变量
 
-## Routes
+## 路由
 
-Routes can be configured to direct traffic to your worker based on URL patterns and domains:
+路由可以配置为基于 URL 模式和域名将流量定向到您的 worker：
 
 ```typescript
 const routes = [
@@ -86,14 +86,14 @@ const routes = [
 ];
 ```
 
-Each route requires:
+每个路由需要：
 
-- `pattern`: URL pattern to match
-- `zone_name`: Domain zone name
-- `custom_domain`: (optional) Set to true to use a custom domain
+- `pattern`: 要匹配的 URL 模式
+- `zone_name`: 域名区域名称
+- `custom_domain`: (可选) 设置为 true 以使用自定义域名
 
-## Requirements
+## 要求
 
-- Cloudflare account with Workers enabled
-- API token with appropriate permissions
-- Domain(s) configured in Cloudflare (for custom domains)
+- 已启用 Workers 的 Cloudflare 账户
+- 具有适当权限的 API token
+- 在 Cloudflare 中配置的域名（用于自定义域名）

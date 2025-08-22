@@ -1,30 +1,30 @@
-# Contributing to MastraAI
+# 为 MastraAI 做贡献
 
-Welcome to the MastraAI developer community. Thanks for taking the time to contribute!
+欢迎来到 MastraAI 开发者社区。感谢您抽出时间做贡献！
 
-## Contributor Guidelines
+## 贡献者指南
 
-Please read the guidance below about what to do if you:
+请阅读以下关于您遇到以下情况时该做什么的指南：
 
-- [Found a bug](#did-you-find-a-bug)
-- [Fixed a bug](#did-you-write-a-patch-that-fixes-a-bug)
-- [Want to add a new feature or change an existing one](#do-you-intend-to-add-a-new-feature-or-change-an-existing-one)
+- [发现了 bug](#您是否发现了-bug)
+- [修复了 bug](#您是否编写了修复-bug-的补丁)
+- [想要添加新功能或更改现有功能](#您是否打算添加新功能或更改现有功能)
 
-### Did you find a bug?
+### 您是否发现了 bug？
 
-- Ensure that the bug was not already reported by searching on GitHub under the relevant issue tracker
-- If you're unable to find an open issue addressing the problem, open a new one
+- 通过在 GitHub 上的相关问题跟踪器中搜索，确保该 bug 尚未被报告
+- 如果您无法找到解决该问题的开放问题，请开启一个新问题
 
-Be sure to include a title and clear description, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+请确保包含标题和清晰的描述，尽可能多的相关信息，以及一个**代码示例**或**可执行的测试用例**来演示未发生的预期行为。
 
-### Did you write a patch that fixes a bug?
+### 您是否编写了修复 bug 的补丁？
 
-- Open a new GitHub pull request with the patch
-- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable
+- 在 GitHub 上开启一个新的 Pull Request，包含该补丁
+- 确保 PR 描述清楚地说明了问题和解决方案。如果适用，请包含相关的问题编号
 
-### Do you intend to add a new feature or change an existing one?
+### 您是否打算添加新功能或更改现有功能？
 
-- Say hello and suggest your change on the discussion channels for the [MastraAI community](https://discord.gg/TpapMTnjyB)
-- Assuming you get positive feedback, raise a Pull Request against your fork/branch to track the development of the feature and discuss the implementation.
+- 在 [MastraAI 社区](https://discord.gg/TpapMTnjyB) 的讨论频道中打招呼并提出您的更改建议
+- 假设您得到了积极的反馈，请针对您的 fork/branch 发起 Pull Request，以跟踪功能的开发并讨论实现方案。
 
-Then do your thing, write some code :)
+然后就开始您的工作，编写一些代码吧 :)

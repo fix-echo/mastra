@@ -1,70 +1,55 @@
 # @mastra/opensearch
 
-Vector store implementation for OpenSearch using the official @opensearch-project/opensearch SDK
+使用官方 @opensearch-project/opensearch SDK 的 OpenSearch 向量存储实现
 
-## Installation
+## 安装
 
 ```bash
 pnpm add @mastra/opensearch
 ```
 
-## Usage
+## 使用方法
 
 ```typescript
 import { OpenSearchVector } from '@mastra/opensearch';
 
 const vectorStore = new OpenSearchVector('http://localhost:9200');
 
-// Create an index
+// 创建索引
 await vectorStore.createIndex({ indexName: 'my-collection', dimension: 1536, metric: 'cosine' });
 
-// Add vectors with documents
-const vectors = [[0.1, 0.2, ...], [0.3, 0.4, ...]];
-const metadata = [{ text: 'doc1' }, { text: 'doc2' }];
-const ids = await vectorStore.upsert({ indexName: 'my-collection', vectors, metadata });
+## 配置
 
-// Query vectors with document filtering
-const results = await vectorStore.query({
-  indexName: 'my-collection',
-  queryVector: [0.1, 0.2, ...],
-  topK: 10, // topK
-  filter: { text: { $eq: 'doc1' } }, // metadata filter
-  includeVector: false, // includeVector
-});
-```
+必需：
 
-## Configuration
+- `url`: 您的 OpenSearch 实例 URL
 
-Required:
+## 功能特性
 
-- `url`: URL of your OpenSearch instance
+- 支持余弦、欧几里德和点积度量的向量相似性搜索
+- 元数据过滤
+- 查询结果中可选包含向量
+- 为向量自动生成 UUID
+- 基于 @opensearch-project/opensearch SDK 构建
 
-## Features
+## 距离度量
 
-- Vector similarity search with Cosine, Euclidean, and Dot Product metrics
-- Metadata filtering
-- Optional vector inclusion in query results
-- Automatic UUID generation for vectors
-- Built on top of @opensearch-project/opensearch SDK
+支持以下距离度量：
 
-## Distance Metrics
+- `cosine` → 余弦距离
+- `euclidean` → 欧几里德距离
+- `dotproduct` → 点积
 
-The following distance metrics are supported:
+## 方法
 
-- `cosine` → Cosine distance
-- `euclidean` → Euclidean distance
-- `dotproduct` → Dot product
+- `createIndex({ indexName, dimension, metric? })`: 创建新集合
+- `upsert({ indexName, vectors, metadata?, ids? })`: 添加或更新向量
+- `query({ indexName, queryVector, topK?, filter?, includeVector? })`: 搜索相似向量
+- `listIndexes()`: 列出所有集合
+- `describeIndex(indexName)`: 获取集合统计信息
+- `deleteIndex(indexName)`: 删除集合
 
-## Methods
+## 相关链接
 
-- `createIndex({ indexName, dimension, metric? })`: Create a new collection
-- `upsert({ indexName, vectors, metadata?, ids? })`: Add or update vectors
-- `query({ indexName, queryVector, topK?, filter?, includeVector? })`: Search for similar vectors
-- `listIndexes()`: List all collections
-- `describeIndex(indexName)`: Get collection statistics
-- `deleteIndex(indexName)`: Delete a collection
-
-## Related Links
-
-- [OpenSearch Documentation](https://opensearch.org/docs/latest/about/)
-- [OpenSearch REST API Reference](https://opensearch.org/docs/latest/api-reference/)
+- [OpenSearch 文档](https://opensearch.org/docs/latest/about/)
+- [OpenSearch REST API 参考](https://opensearch.org/docs/latest/api-reference/)

@@ -1,45 +1,12 @@
 # @mastra/mcp-docs-server
 
-A Model Context Protocol (MCP) server that provides AI assistants with direct access to Mastra.ai's complete knowledge base. This includes comprehensive documentation with MDX support, a collection of production-ready code examples, technical blog posts, and detailed package changelogs. The server integrates with popular AI development environments like Cursor and Windsurf, as well as Mastra agents, making it easy to build documentation-aware AI assistants that can provide accurate, up-to-date information about Mastra.ai's ecosystem.
+一个 Model Context Protocol (MCP) 服务器，为 AI 助手提供对 Mastra.ai 完整知识库的直接访问。这包括支持 MDX 的全面文档、一系列生产就绪的代码示例、技术博客文章和详细的包变更日志。该服务器与流行的 AI 开发环境（如 Cursor 和 Windsurf）以及 Mastra Agents 集成，可以轻松构建具备文档感知能力的 AI 助手，提供关于 Mastra.ai 生态系统的准确、最新信息。
 
-## Installation
+## 安装
 
-### In Cursor
+### 在 Cursor 中
 
-Create or update `.cursor/mcp.json` in your project root:
-
-MacOS/Linux
-
-```json
-{
-  "mcpServers": {
-    "mastra": {
-      "command": "npx",
-      "args": ["-y", "@mastra/mcp-docs-server"]
-    }
-  }
-}
-```
-
-Windows
-
-```json
-{
-  "mcpServers": {
-    "mastra": {
-      "command": "cmd",
-      "args": ["/c", "npx", "-y", "@mastra/mcp-docs-server"]
-    }
-  }
-}
-```
-
-This will make all Mastra documentation tools available in your Cursor workspace.
-Note that the MCP server wont be enabled by default. You'll need to go to Cursor settings -> MCP settings and click "enable" on the Mastra MCP server.
-
-### In Windsurf
-
-Create or update `~/.codeium/windsurf/mcp_config.json`:
+在项目根目录创建或更新 `.cursor/mcp.json`：
 
 MacOS/Linux
 
@@ -67,18 +34,51 @@ Windows
 }
 ```
 
-This will make all Mastra documentation tools available in your Windsurf workspace.
-Note that Windsurf MCP tool calling doesn't work very well. You will need to fully quit and re-open Windsurf after adding this.
-If a tool call fails you will need to go into Windsurf MCP settings and re-start the MCP server.
+这将使所有 Mastra 文档工具在您的 Cursor 工作区中可用。
+请注意，MCP 服务器默认不会启用。您需要前往 Cursor 设置 -> MCP 设置并点击 Mastra MCP 服务器上的 "enable"。
 
-### In a Mastra Agent
+### 在 Windsurf 中
+
+创建或更新 `~/.codeium/windsurf/mcp_config.json`：
+
+MacOS/Linux
+
+```json
+{
+  "mcpServers": {
+    "mastra": {
+      "command": "npx",
+      "args": ["-y", "@mastra/mcp-docs-server"]
+    }
+  }
+}
+```
+
+Windows
+
+```json
+{
+  "mcpServers": {
+    "mastra": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@mastra/mcp-docs-server"]
+    }
+  }
+}
+```
+
+这将使所有 Mastra 文档工具在您的 Windsurf 工作区中可用。
+请注意，Windsurf MCP 工具调用效果不佳。添加此配置后，您需要完全退出并重新打开 Windsurf。
+如果工具调用失败，您需要进入 Windsurf MCP 设置并重新启动 MCP 服务器。
+
+### 在 Mastra Agent 中
 
 ```typescript
 import { MCPClient } from '@mastra/mcp';
 import { Agent } from '@mastra/core/agent';
 import { openai } from '@ai-sdk/openai';
 
-// Configure MCP with the docs server
+// 使用文档服务器配置 MCP
 const mcp = new MCPClient({
   servers: {
     mastra: {
@@ -88,7 +88,7 @@ const mcp = new MCPClient({
   },
 });
 
-// Create an agent with access to all documentation tools
+// 创建一个可以访问所有文档工具的 Agent
 const agent = new Agent({
   name: 'Documentation Assistant',
   instructions: 'You help users find and understand Mastra.ai documentation.',
@@ -96,34 +96,34 @@ const agent = new Agent({
   tools: await mcp.getTools(),
 });
 
-// Or use toolsets dynamically in generate/stream
+// 或在 generate/stream 中动态使用工具集
 const response = await agent.stream('Show me the quick start example', {
   toolsets: await mcp.getToolsets(),
 });
 ```
 
-## Tools
+## 工具
 
-### Documentation Tool (`mastraDocs`)
+### 文档工具 (`mastraDocs`)
 
-- Get Mastra.ai documentation by requesting specific paths
-- Explore both general guides and API reference documentation
-- Automatically lists available paths when a requested path isn't found
+- 通过请求特定路径获取 Mastra.ai 文档
+- 探索一般指南和 API 参考文档
+- 当请求的路径未找到时自动列出可用路径
 
-### Examples Tool (`mastraExamples`)
+### 示例工具 (`mastraExamples`)
 
-- Access code examples showing Mastra.ai implementation patterns
-- List all available examples
-- Get detailed source code for specific examples
+- 访问展示 Mastra.ai 实现模式的代码示例
+- 列出所有可用示例
+- 获取特定示例的详细源代码
 
-### Blog Tool (`mastraBlog`)
+### 博客工具 (`mastraBlog`)
 
-- Access technical blog posts and articles
-- Posts are properly formatted with code block handling
-- Supports various date formats in blog metadata
+- 访问技术博客文章和文章
+- 文章经过适当格式化，包含代码块处理
+- 支持博客元数据中的各种日期格式
 
-### Changes Tool (`mastraChanges`)
+### 变更工具 (`mastraChanges`)
 
-- Access package changelogs
-- List all available package changelogs
-- Get detailed changelog content for specific packages
+- 访问包变更日志
+- 列出所有可用的包变更日志
+- 获取特定包的详细变更日志内容

@@ -1,72 +1,72 @@
-# Docs Feedback Form - Airtable Setup Guide
+# 文档反馈表单 - Airtable 设置指南
 
-## Overview
+## 概述
 
-The feedback form is now implemented with Airtable integration. Follow these steps to set up data collection.
+反馈表单现已使用 Airtable 集成实现。按照以下步骤设置数据收集。
 
-## Required Environment Variables
+## 所需环境变量
 
-Add these to your `.env.local` file:
+将这些添加到您的 `.env.local` 文件中：
 
 ```bash
-# Required: Your Airtable Personal Access Token
+# 必需：您的 Airtable 个人访问令牌
 AIRTABLE_API_KEY=patXXXXXXXXXXXXXX
 
-# Required: Your Airtable Base ID (starts with 'app')
+# 必需：您的 Airtable Base ID（以 'app' 开头）
 AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
 
-# Optional: Table name (defaults to "Feedback")
-# Use the exact table name from Airtable - spaces are OK
+# 可选：表名（默认为 "Feedback"）
+# 使用 Airtable 中的确切表名 - 空格可以
 AIRTABLE_TABLE_NAME=Docs Feedback
 ```
 
-## Airtable Setup Steps
+## Airtable 设置步骤
 
-### 1. Create an Airtable Base
+### 1. 创建 Airtable Base
 
-1. Go to [Airtable](https://airtable.com) and create a new base
-2. Name it something like "Docs Feedback"
+1. 前往 [Airtable](https://airtable.com) 并创建一个新 base
+2. 将其命名为类似 "Docs Feedback"
 
-### 2. Create the Feedback Table
+### 2. 创建反馈表
 
-Create a table named "Feedback" (or "Docs Feedback" - either works) with these columns:
+创建一个名为 "Feedback"（或 "Docs Feedback" - 都可以）的表，包含以下列：
 
-| Column Name       | Field Type       | Description                           |
-| ----------------- | ---------------- | ------------------------------------- |
-| **Feedback ID**   | Single line text | Unique identifier                     |
-| **Feedback Text** | Long text        | The actual feedback content           |
-| **Rating**        | Number           | Star rating (1-5)                     |
-| **Email**         | Email            | User's email (optional)               |
-| **Page URL**      | URL              | Which docs page the feedback is about |
-| **User Agent**    | Long text        | Browser/device info                   |
-| **Client IP**     | Single line text | User's IP address                     |
-| **Timestamp**     | Date & time      | When feedback was submitted           |
-| **Source**        | Single line text | Always "docs"                         |
-| **Status**        | Single select    | New, In Review, Responded, Closed     |
-| **Created Date**  | Date             | Date only (YYYY-MM-DD)                |
+| 列名             | 字段类型     | 描述                           |
+| ----------------- | ------------ | ------------------------------ |
+| **Feedback ID**   | 单行文本     | 唯一标识符                     |
+| **Feedback Text** | 长文本       | 实际的反馈内容                 |
+| **Rating**        | 数字         | 星级评分（1-5）                |
+| **Email**         | 邮箱         | 用户邮箱（可选）               |
+| **Page URL**      | URL          | 反馈来自哪个文档页面           |
+| **User Agent**    | 长文本       | 浏览器/设备信息                |
+| **Client IP**     | 单行文本     | 用户 IP 地址                   |
+| **Timestamp**     | 日期和时间   | 反馈提交时间                   |
+| **Source**        | 单行文本     | 始终为 "docs"                  |
+| **Status**        | 单选         | New, In Review, Responded, Closed |
+| **Created Date**  | 日期         | 仅日期（YYYY-MM-DD）           |
 
-### 3. Get Your API Credentials
+### 3. 获取您的 API 凭据
 
-#### Get API Key:
+#### 获取 API 密钥：
 
-1. Go to https://airtable.com/create/tokens
-2. Create a new personal access token
-3. Give it a name like "Docs Feedback"
-4. Add these scopes:
+1. 前往 https://airtable.com/create/tokens
+2. 创建一个新的个人访问令牌
+3. 给它起个名字如 "Docs Feedback"
+4. 添加这些范围：
    - `data.records:read`
    - `data.records:write`
-5. Add access to your feedback base
-6. Copy the token (starts with `pat`)
+5. 添加对您的反馈 base 的访问权限
+6. 复制令牌（以 `pat` 开头）
 
-#### Get Base ID:
+#### 获取 Base ID：
 
-1. Go to https://airtable.com/api
-2. Select your feedback base
-3. Your base ID is shown in the URL and docs (starts with `app`)
+1. 前往 https://airtable.com/api
+2. 选择您的反馈 base
+3. 您的 base ID 显示在 URL 和文档中（以 `app` 开头）
 
-### 4. Configure Environment
+### 4. 配置环境
 
-Create or update your `.env.local` file:
+创建或更新您的 `.env.local` 文件：
 
 ```bash
 AIRTABLE_API_KEY=your_token_here
@@ -74,94 +74,94 @@ AIRTABLE_BASE_ID=your_base_id_here
 AIRTABLE_TABLE_NAME=Feedback
 ```
 
-### 5. Test the Integration
+### 5. 测试集成
 
-1. Start your development server: `npm run dev`
-2. Go to any docs page
-3. Click "Question? Give us feedback" at the bottom
-4. Submit test feedback
-5. Check your Airtable base to see the data
+1. 启动您的开发服务器：`npm run dev`
+2. 前往任何文档页面
+3. 点击底部的 "Question? Give us feedback"
+4. 提交测试反馈
+5. 检查您的 Airtable base 以查看数据
 
-## Features
+## 功能
 
-### What Gets Stored:
+### 存储的内容：
 
-- ✅ User feedback text
-- ✅ Star rating (1-5)
-- ✅ User email (optional)
-- ✅ Page URL where feedback was given
-- ✅ Browser/device information
-- ✅ Timestamp
-- ✅ Unique feedback ID
-- ✅ Status for tracking
+- ✅ 用户反馈文本
+- ✅ 星级评分（1-5）
+- ✅ 用户邮箱（可选）
+- ✅ 反馈页面的 URL
+- ✅ 浏览器/设备信息
+- ✅ 时间戳
+- ✅ 唯一反馈 ID
+- ✅ 状态跟踪
 
-### Error Handling:
+### 错误处理：
 
-- If Airtable fails, feedback is logged to console (fallback)
-- Users still get success message
-- Detailed error logging for debugging
+- 如果 Airtable 失败，反馈会记录到控制台（回退方案）
+- 用户仍会收到成功消息
+- 详细的错误日志用于调试
 
-### UI Features:
+### UI 功能：
 
-- Drawer-style form (slides from right)
-- Star rating component
-- Form validation
-- Loading states
-- Success/error feedback
-- Mobile responsive
+- 抽屉式表单（从右侧滑出）
+- 星级评分组件
+- 表单验证
+- 加载状态
+- 成功/错误反馈
+- 移动端响应式
 
-## Troubleshooting
+## 故障排除
 
-### Common Issues:
+### 常见问题：
 
 1. **"Airtable configuration missing"**
-   - Check your `.env.local` file exists
-   - Verify `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID` are set
-   - Restart your development server after adding env vars
+   - 检查您的 `.env.local` 文件是否存在
+   - 验证 `AIRTABLE_API_KEY` 和 `AIRTABLE_BASE_ID` 是否已设置
+   - 添加环境变量后重启开发服务器
 
 2. **"422 Unprocessable Entity"**
-   - Column names in Airtable don't match the API call
-   - Verify all columns exist and have correct field types
+   - Airtable 中的列名与 API 调用不匹配
+   - 验证所有列都存在且具有正确的字段类型
 
 3. **"401 Unauthorized"**
-   - API key is incorrect or expired
-   - Token doesn't have access to the base
-   - Check token scopes include read/write permissions
+   - API 密钥不正确或已过期
+   - 令牌没有对该 base 的访问权限
+   - 检查令牌范围是否包含读/写权限
 
 4. **"403 Forbidden - Invalid permissions or model not found"**
-   - API token doesn't have access to the base
-   - Table name doesn't exist or is misspelled
-   - Token scopes are insufficient
-   - **Most common:** Check your `AIRTABLE_TABLE_NAME` matches exactly (case-sensitive)
+   - API 令牌没有对该 base 的访问权限
+   - 表名不存在或拼写错误
+   - 令牌范围不足
+   - **最常见：** 检查您的 `AIRTABLE_TABLE_NAME` 是否完全匹配（区分大小写）
 
 5. **"404 Not Found"**
-   - Base ID is incorrect
-   - Table name doesn't match (check `AIRTABLE_TABLE_NAME`)
+   - Base ID 不正确
+   - 表名不匹配（检查 `AIRTABLE_TABLE_NAME`）
 
-### Debug Mode:
+### 调试模式：
 
-Check the server console for detailed logs:
+检查服务器控制台的详细日志：
 
-- 🚀 Request being sent to Airtable
-- ✅ Successful storage
-- ❌ Error details
+- 🚀 发送到 Airtable 的请求
+- ✅ 成功存储
+- ❌ 错误详情
 
-## Production Deployment
+## 生产部署
 
-For production, make sure to:
+在生产环境中，请确保：
 
-1. Set environment variables in your hosting platform
-2. Use a production Airtable base (separate from development)
-3. Consider rate limiting for the API endpoint
-4. Set up monitoring for failed submissions
+1. 在您的托管平台上设置环境变量
+2. 使用生产 Airtable base（与开发环境分离）
+3. 考虑为 API 端点设置速率限制
+4. 设置失败提交的监控
 
-## Alternative Storage Options
+## 替代存储选项
 
-The API is designed to be extensible. You can easily add:
+API 设计为可扩展。您可以轻松添加：
 
-- Database storage (PostgreSQL, MongoDB)
-- Email notifications
-- Webhook integrations
-- Multiple storage backends
+- 数据库存储（PostgreSQL、MongoDB）
+- 邮件通知
+- Webhook 集成
+- 多个存储后端
 
-Just modify the `sendToAirtable` function or add additional storage functions in the API route.
+只需修改 `sendToAirtable` 函数或在 API 路由中添加额外的存储函数。

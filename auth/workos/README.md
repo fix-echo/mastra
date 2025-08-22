@@ -1,40 +1,40 @@
 # @mastra/auth-workos
 
-A WorkOS authentication provider for Mastra, enabling seamless integration of WorkOS authentication and authorization in your applications.
+适用于 Mastra 的 WorkOS 认证提供者，在您的应用中实现 WorkOS 认证和授权的无缝集成。
 
-## Features
+## 功能特性
 
-- 🔐 WorkOS authentication integration
-- 👥 User management and organization membership support
-- 🔑 JWT token verification using WorkOS JWKS
-- 👮‍♂️ Role-based authorization with admin role support
+- 🔐 WorkOS 认证集成
+- 👥 用户管理和组织成员支持
+- 🔑 使用 WorkOS JWKS 的 JWT token 验证
+- 👮‍♂️ 基于角色的授权和管理员角色支持
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/auth-workos
-# or
+# 或者
 yarn add @mastra/auth-workos
-# or
+# 或者
 pnpm add @mastra/auth-workos
 ```
 
-## Usage
+## 用法
 
 ```typescript
 import { Mastra } from '@mastra/core';
 import { MastraAuthWorkos } from '@mastra/auth-workos';
 
-// Initialize with environment variables
+// 使用环境变量初始化
 const auth = new MastraAuthWorkos();
 
-// Or initialize with explicit configuration
+// 或者使用显式配置初始化
 const auth = new MastraAuthWorkos({
   apiKey: 'your_workos_api_key',
   clientId: 'your_workos_client_id',
 });
 
-// Enable auth in Mastra
+// 在 Mastra 中启用认证
 const mastra = new Mastra({
   ...
   server: {
@@ -43,18 +43,18 @@ const mastra = new Mastra({
 });
 ```
 
-## Configuration
+## 配置
 
-The package requires the following configuration:
+该包需要以下配置：
 
-### Environment Variables
+### 环境变量
 
-- `WORKOS_API_KEY`: Your WorkOS API key
-- `WORKOS_CLIENT_ID`: Your WorkOS client ID
+- `WORKOS_API_KEY`: 您的 WorkOS API 密钥
+- `WORKOS_CLIENT_ID`: 您的 WorkOS 客户端 ID
 
-### Options
+### 选项
 
-You can also provide these values directly when initializing the provider:
+您还可以在初始化提供者时直接提供这些值：
 
 ```typescript
 interface MastraAuthWorkosOptions {
@@ -67,12 +67,12 @@ interface MastraAuthWorkosOptions {
 
 ### `authenticateToken(token: string): Promise<WorkosUser | null>`
 
-Verifies a JWT token using WorkOS JWKS and returns the user information if valid.
+使用 WorkOS JWKS 验证 JWT token，如果有效则返回用户信息。
 
 ### `authorizeUser(user: WorkosUser): Promise<boolean>`
 
-Checks if a user has admin privileges by verifying their organization memberships and roles.
+通过验证用户组织成员资格和角色来检查用户是否具有管理员权限。
 
-## License
+## 许可证
 
 MIT

@@ -24,14 +24,13 @@ export type MemoryProcessorOpts = {
   newMessages?: CoreMessage[];
 };
 /**
- * Interface for message processors that can filter or transform messages
- * before they're sent to the LLM.
+ * 消息处理器接口，可以在消息发送给LLM之前对其进行过滤或转换。
  */
 export abstract class MemoryProcessor extends MastraBase {
   /**
-   * Process a list of messages and return a filtered or transformed list.
-   * @param messages The messages to process
-   * @returns The processed messages
+   * 处理消息列表并返回过滤或转换后的列表。
+   * @param messages 要处理的消息
+   * @returns 处理后的消息
    */
   process(messages: CoreMessage[], _opts: MemoryProcessorOpts): CoreMessage[] {
     return messages;

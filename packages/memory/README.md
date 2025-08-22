@@ -1,7 +1,7 @@
 # Mastra Memory
 
-Memory management for Mastra agents. Visit [the docs](https://mastra.ai/docs/agents/agent-memory) for more information.
+Mastra Agents 的内存管理。访问 [文档](https://mastra.ai/docs/agents/agent-memory) 获取更多信息。
 
-## License
+## 许可证
 
 MIT

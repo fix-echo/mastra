@@ -8,31 +8,31 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/%40mastra%252Fcore)](https://www.npmjs.com/package/@mastra/core)
 [![Static Badge](https://img.shields.io/badge/Y%20Combinator-W25-orange)](https://www.ycombinator.com/companies?batch=W25)
 
-Mastra is the Typescript framework for building AI agents and assistants. It’s used by some of the largest companies in the world to build internal AI automation tooling and customer-facing agents.
+Mastra 是用于构建 AI Agents 和助手的 Typescript 框架。世界上一些最大的公司使用它来构建内部 AI 自动化工具和面向客户的 Agents。
 
-You can run Mastra on your local machine, bundle it into a Node.js server with Hono, or deploy to a serverless cloud.
+您可以在本地机器上运行 Mastra，将其打包到带有 Hono 的 Node.js 服务器中，或部署到无服务器云。
 
-The main Mastra features are:
+Mastra 的主要功能包括：
 
-| Features                                               | Description                                                                                                                                                                                                                                                                                            |
+| 功能                                               | 描述                                                                                                                                                                                                                                                                                            |
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| LLM Models                                             | Mastra uses the [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) for model routing, providing a unified interface to interact with any LLM provider including OpenAI, Anthropic, and Google Gemini. You can choose the specific model and provider, and decide whether to stream the response. |
-| [Agents](https://mastra.ai/docs/agents/overview)       | Agents are systems where the language model chooses a sequence of actions. In Mastra, agents provide LLM models with tools, workflows, and synced data. Agents can call your own functions or APIs of third-party integrations and access knowledge bases you build.                                   |
-| [Tools](https://mastra.ai/docs/agents/adding-tools)    | Tools are typed functions that can be executed by agents or workflows, with built-in integration access and parameter validation. Each tool has a schema that defines its inputs, an executor function that implements its logic, and access to configured integrations.                               |
-| [Workflows](https://mastra.ai/docs/workflows/overview) | Workflows are durable graph-based state machines. They have loops, branching, wait for human input, embed other workflows, do error handling, retries, parsing and so on. They can be built in code or with a visual editor. Each step in a workflow has built-in OpenTelemetry tracing.               |
-| [RAG](https://mastra.ai/docs/rag/overview)             | Retrieval-augmented generation (RAG) lets you construct a knowledge base for agents. RAG is an ETL pipeline with specific querying techniques, including chunking, embedding, and vector search.                                                                                                       |
-| [Integrations](https://mastra.ai/docs/integrations)    | In Mastra, integrations are auto-generated, type-safe API clients for third-party services that can be used as tools for agents or steps in workflows.                                                                                                                                                 |
-| [Evals](https://mastra.ai/docs/08-running-evals)       | Evals are automated tests that evaluate LLM outputs using model-graded, rule-based, and statistical methods. Each eval returns a normalized score between 0-1 that can be logged and compared. Evals can be customized with your own prompts and scoring functions.                                    |
+| LLM Models                                             | Mastra 使用 [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) 进行模型路由，提供统一接口与任何 LLM 提供商交互，包括 OpenAI、Anthropic 和 Google Gemini。您可以选择特定的模型和提供商，并决定是否流式传输响应。 |
+| [Agents](https://mastra.ai/docs/agents/overview)       | Agents 是语言模型选择一系列操作的系统。在 Mastra 中，Agents 为 LLM 模型提供 Tools、Workflows 和同步数据。Agents 可以调用您自己的函数或第三方集成的 APIs，并访问您构建的知识库。                                   |
+| [Tools](https://mastra.ai/docs/agents/adding-tools)    | Tools 是可以由 Agents 或 Workflows 执行的类型化函数，具有内置的集成访问和参数验证。每个 Tool 都有一个定义其输入的模式、一个实现其逻辑的执行器函数，以及对配置的集成的访问。                               |
+| [Workflows](https://mastra.ai/docs/workflows/overview) | Workflows 是持久的基于图形的状态机。它们具有循环、分支、等待人工输入、嵌入其他 Workflows、错误处理、重试、解析等功能。它们可以在代码中构建或使用可视化编辑器构建。Workflows 中的每个步骤都内置了 OpenTelemetry 追踪。               |
+| [RAG](https://mastra.ai/docs/rag/overview)             | 检索增强生成 (RAG) 让您能够为 Agents 构建知识库。RAG 是一个 ETL 管道，具有特定的查询技术，包括分块、嵌入和向量搜索。                                                                                                       |
+| [Integrations](https://mastra.ai/docs/integrations)    | 在 Mastra 中，Integrations 是为第三方服务自动生成的类型安全的 API 客户端，可以作为 Tools 用于 Agents 或 Workflows 中的步骤。                                                                                                                                                 |
+| [Evals](https://mastra.ai/docs/08-running-evals)       | Evals 是使用模型评分、基于规则和统计方法评估 LLM 输出的自动化测试。每个 Eval 返回 0-1 之间的标准化分数，可以记录和比较。Evals 可以使用您自己的提示和评分函数进行自定义。                                    |
 
-## Quick Start
+## 快速开始
 
-### Prerequisites
+### 先决条件
 
 - Node.js (v20.0+)
 
-## Get an LLM provider API key
+## 获取 LLM 提供商 API 密钥
 
-If you don't have an API key for an LLM provider, you can get one from the following services:
+如果您没有 LLM 提供商的 API 密钥，可以从以下服务获取：
 
 - [OpenAI](https://platform.openai.com/)
 - [Anthropic](https://console.anthropic.com/settings/keys)
@@ -40,35 +40,35 @@ If you don't have an API key for an LLM provider, you can get one from the follo
 - [Groq](https://console.groq.com/docs/overview)
 - [Cerebras](https://inference-docs.cerebras.ai/introduction)
 
-If you don't have an account with these providers, you can sign up and get an API key. Anthropic require a credit card to get an API key. Some OpenAI models and Gemini do not and have a generous free tier for its API.
+如果您没有这些提供商的账户，可以注册并获取 API 密钥。Anthropic 需要信用卡才能获取 API 密钥。一些 OpenAI 模型和 Gemini 不需要，并且其 API 有慷慨的免费层级。
 
-## Create a new project
+## 创建新项目
 
-The easiest way to get started with Mastra is by using `create-mastra`. This CLI tool enables you to quickly start building a new Mastra application, with everything set up for you.
+开始使用 Mastra 最简单的方法是使用 `create-mastra`。这个 CLI 工具使您能够快速开始构建新的 Mastra 应用程序，并为您设置好一切。
 
 ```bash
 npx create-mastra@latest
 ```
 
-### Run the script
+### 运行脚本
 
-Finally, run `mastra dev` to open the Mastra playground.
+最后，运行 `mastra dev` 打开 Mastra playground。
 
 ```bash copy
 npm run dev
 ```
 
-If you're using Anthropic, set the `ANTHROPIC_API_KEY`. If you're using Gemini, set the `GOOGLE_GENERATIVE_AI_API_KEY`.
+如果您使用 Anthropic，请设置 `ANTHROPIC_API_KEY`。如果您使用 Gemini，请设置 `GOOGLE_GENERATIVE_AI_API_KEY`。
 
 # MCP Server ([@mastra/mcp-docs-server](https://www.npmjs.com/package/@mastra/mcp-docs-server))
 
-Use our MCP server [@mastra/mcp-docs-server](https://www.npmjs.com/package/@mastra/mcp-docs-server) to teach your LLM how to use Mastra.
+使用我们的 MCP server [@mastra/mcp-docs-server](https://www.npmjs.com/package/@mastra/mcp-docs-server) 来教您的 LLM 如何使用 Mastra。
 
-This is a Model Context Protocol (MCP) server that provides AI assistants with direct access to Mastra.ai's complete knowledge base.
+这是一个 Model Context Protocol (MCP) 服务器，为 AI 助手提供对 Mastra.ai 完整知识库的直接访问。
 
-## In Cursor
+## 在 Cursor 中
 
-Create or update .cursor/mcp.json in your project root:
+在项目根目录创建或更新 .cursor/mcp.json：
 
 ### MacOS/Linux
 
@@ -96,11 +96,11 @@ Create or update .cursor/mcp.json in your project root:
 }
 ```
 
-This will make all Mastra documentation tools available in your Cursor workspace. Note that the MCP server wont be enabled by default. You'll need to go to Cursor settings -> MCP settings and click "enable" on the Mastra MCP server.
+这将使所有 Mastra 文档工具在您的 Cursor 工作区中可用。请注意，MCP 服务器默认不会启用。您需要前往 Cursor 设置 -> MCP 设置并点击 Mastra MCP 服务器上的 "enable"。
 
-## In Windsurf
+## 在 Windsurf 中
 
-Create or update ~/.codeium/windsurf/mcp_config.json:
+创建或更新 ~/.codeium/windsurf/mcp_config.json：
 
 ### MacOS/Linux
 
@@ -115,18 +115,18 @@ Create or update ~/.codeium/windsurf/mcp_config.json:
 }
 ```
 
-For more installation options visit [https://www.npmjs.com/package/@mastra/mcp-docs-server](https://www.npmjs.com/package/@mastra/mcp-docs-server)
+更多安装选项请访问 [https://www.npmjs.com/package/@mastra/mcp-docs-server](https://www.npmjs.com/package/@mastra/mcp-docs-server)
 
-## Contributing
+## 贡献
 
-Looking to contribute? All types of help are appreciated, from coding to testing and feature specification.
+想要贡献吗？欢迎各种形式的帮助，从编码到测试和功能规范。
 
-If you are a developer and would like to contribute with code, please open an issue to discuss before opening a Pull Request.
+如果您是开发人员并希望贡献代码，请在提交 Pull Request 之前先开启一个议题进行讨论。
 
-Information about the project setup can be found in the [development documentation](./DEVELOPMENT.md)
+有关项目设置的信息可以在[开发文档](./DEVELOPMENT.md)中找到
 
-## Support
+## 支持
 
-We have an [open community Discord](https://discord.gg/BTYqqHKUrf). Come and say hello and let us know if you have any questions or need any help getting things running.
+我们有一个[开放的社区 Discord](https://discord.gg/BTYqqHKUrf)。来打个招呼，告诉我们如果您有任何问题或需要帮助来启动项目。
 
-It's also super helpful if you leave the project a star here at the [top of the page](https://github.com/mastra-ai/mastra)
+如果您在[页面顶部](https://github.com/mastra-ai/mastra)给项目点个星也会非常有帮助

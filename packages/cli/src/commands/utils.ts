@@ -2,7 +2,7 @@ export function getPackageManager(): string {
   const userAgent = process.env.npm_config_user_agent || '';
   const execPath = process.env.npm_execpath || '';
 
-  // Check user agent first
+  // 首先检查用户代理
   if (userAgent.includes('yarn')) {
     return 'yarn';
   }
@@ -13,7 +13,7 @@ export function getPackageManager(): string {
     return 'npm';
   }
 
-  // Fallback to execpath check
+  // 回退到execpath检查
   if (execPath.includes('yarn')) {
     return 'yarn';
   }

@@ -1,33 +1,33 @@
 # @mastra/auth-supabase
 
-A Supabase authentication integration for Mastra, providing seamless authentication and authorization capabilities using Supabase's authentication system.
+适用于 Mastra 的 Supabase 认证集成，使用 Supabase 的认证系统提供无缝的认证和授权功能。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/auth-supabase
-# or
+# 或者
 yarn add @mastra/auth-supabase
-# or
+# 或者
 pnpm add @mastra/auth-supabase
 ```
 
-## Usage
+## 用法
 
 ```typescript
 import { Mastra } from '@mastra/core';
 import { MastraAuthSupabase } from '@mastra/auth-supabase';
 
-// Initialize with environment variables
+// 使用环境变量初始化
 const auth = new MastraAuthSupabase();
 
-// Or initialize with explicit configuration
+// 或者使用显式配置初始化
 const auth = new MastraAuthSupabase({
   url: 'your-supabase-url',
   anonKey: 'your-supabase-anon-key',
 });
 
-// Enable auth in Mastra
+// 在 Mastra 中启用认证
 const mastra = new Mastra({
   ...
   server: {
@@ -36,15 +36,15 @@ const mastra = new Mastra({
 });
 ```
 
-## Configuration
+## 配置
 
-The package can be configured in two ways:
+该包可以通过两种方式配置：
 
-1. **Environment Variables**:
-   - `SUPABASE_URL`: Your Supabase project URL
-   - `SUPABASE_ANON_KEY`: Your Supabase anonymous key
+1. **环境变量**:
+   - `SUPABASE_URL`: 您的 Supabase 项目 URL
+   - `SUPABASE_ANON_KEY`: 您的 Supabase 匿名密钥
 
-2. **Constructor Options**:
+2. **构造函数选项**:
    ```typescript
    interface MastraAuthSupabaseOptions {
      url?: string;
@@ -52,29 +52,29 @@ The package can be configured in two ways:
    }
    ```
 
-## Features
+## 功能特性
 
-- **Authentication**: Verifies user tokens and retrieves user information from Supabase
-- **Authorization**: Checks user permissions based on their role in Supabase
-- **Type Safety**: Full TypeScript support with proper type definitions
-- **Environment Variable Support**: Easy configuration through environment variables
+- **认证**: 验证用户 token 并从 Supabase 获取用户信息
+- **授权**: 基于用户在 Supabase 中的角色检查用户权限
+- **类型安全**: 完整的 TypeScript 支持和适当的类型定义
+- **环境变量支持**: 通过环境变量轻松配置
 
 ## API
 
 ### `authenticateToken(token: string)`
 
-Authenticates a user token and returns the user information if valid.
+验证用户 token，如果有效则返回用户信息。
 
 ### `authorizeUser(user: User)`
 
-Checks if a user has the required permissions (currently checks for admin status).
+检查用户是否具有所需权限（目前检查管理员状态）。
 
-## Requirements
+## 要求
 
-- Node.js 16 or higher
-- Supabase project with authentication enabled
-- Supabase URL and anonymous key
+- Node.js 16 或更高版本
+- 已启用认证的 Supabase 项目
+- Supabase URL 和匿名密钥
 
-## License
+## 许可
 
 Elastic-2.0

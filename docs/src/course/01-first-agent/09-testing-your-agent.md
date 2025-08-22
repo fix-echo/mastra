@@ -1,12 +1,12 @@
-# Testing Your Agent
+# 测试您的 Agent
 
-Now let's test our agent in the playground:
+现在让我们在 playground 中测试我们的 agent：
 
-1. Make sure your development server is running with `npm run dev`
-2. Open the playground at http://localhost:4111/
-3. You should see your "Financial Assistant Agent" in the list of agents
-4. Try sending a message like "Hello, can you help me analyze my spending?"
+1. 确保您的开发服务器正在运行 `npm run dev`
+2. 在 http://localhost:4111/ 打开 playground
+3. 您应该在 agent 列表中看到您的 "Financial Assistant Agent"
+4. 尝试发送类似 "Hello, can you help me analyze my spending?" 的消息
 
-At this point, your agent can respond to basic questions but doesn't have access to any transaction data. In the next step, we'll create a custom tool to fetch transaction data from a Google Sheet.
+此时，您的 agent 可以回复基本问题，但无法访问任何交易数据。在下一步中，我们将创建一个自定义工具来从 Google Sheet 获取交易数据。
 
-Testing your agent in the playground is an important step in the development process. It allows you to see how your agent responds to different inputs and identify any issues that need to be addressed before deploying it to production.
+在 playground 中测试您的 agent 是开发过程中的重要步骤。它允许您查看您的 agent 如何响应不同的输入，并在将其部署到生产环境之前识别需要解决的任何问题。

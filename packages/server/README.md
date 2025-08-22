@@ -1,20 +1,17 @@
 # @mastra/server
 
-Typed HTTP handlers and utilities for exposing a `Mastra` instance over HTTP.
-This package powers `mastra dev` and can be added to your own server to provide
-REST and streaming endpoints for agents, workflows, telemetry and more.
+类型化的 HTTP 处理程序和实用程序，用于通过 HTTP 暴露 `Mastra` 实例。
+此包为 `mastra dev` 提供支持，可以添加到您自己的服务器中，为 Agents、Workflows、遥测等提供 REST 和流式端点。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/server
 ```
 
-## Usage
+## 用法
 
-The handlers are framework agnostic functions which accept a `Mastra` instance
-and a request context. They are typically mounted under a URL prefix within your
-web framework of choice:
+处理程序是与框架无关的函数，接受 `Mastra` 实例和请求上下文。它们通常在您选择的 Web 框架内挂载到 URL 前缀下：
 
 ```typescript
 import { Hono } from 'hono';
@@ -34,39 +31,34 @@ app.post('/mastra/agents/:id/generate', async ctx => {
   });
 });
 
-// Mount additional handlers as required
+// 根据需要挂载额外的处理程序
 ```
 
-Running `mastra dev` starts a local development UI at
-`http://localhost:3000` using these handlers.
+运行 `mastra dev` 会使用这些处理程序在 `http://localhost:3000` 启动一个本地开发 UI。
 
-## Available Handler Groups
+## 可用的处理程序组
 
-- **Agents** - list defined agents, retrieve metadata, and run `generate`
-  or `stream`.
-- **Workflows** - start and inspect workflow runs.
-- **Tools** - discover tools available to the `Mastra` instance.
-- **Memory** - interact with configured memory stores.
-- **Logs** - query runtime logs when a supporting logger transport is used.
-- **Telemetry** - expose metrics produced by the telemetry subsystem.
-- **Networks** - interact with agent networks.
-- **Vector / Voice** - endpoints related to vector stores and voice synthesis.
+- **Agents** - 列出定义的 Agents，检索元数据，以及运行 `generate` 或 `stream`。
+- **Workflows** - 启动和检查工作流运行。
+- **Tools** - 发现 `Mastra` 实例可用的工具。
+- **Memory** - 与配置的内存存储交互。
+- **Logs** - 当使用支持的日志记录器传输时查询运行时日志。
+- **Telemetry** - 暴露遥测子系统产生的指标。
+- **Networks** - 与 Agent 网络交互。
+- **Vector / Voice** - 与向量存储和语音合成相关的端点。
 
-Handlers return JSON serialisable data and throw an `HTTPException` (subclass of
-`Error`) when a failure should result in a non-2xx HTTP status.
+处理程序返回可 JSON 序列化的数据，并在失败应导致非 2xx HTTP 状态时抛出 `HTTPException`（`Error` 的子类）。
 
-## OpenAPI Spec Generation
+## OpenAPI 规范生成
 
-The local OpenAPI specification used by the CLI playground and similar tools can
-be refreshed by running:
+CLI playground 和类似工具使用的本地 OpenAPI 规范可以通过运行以下命令刷新：
 
 ```bash
 pnpm run pull:openapispec
 ```
 
-within the `@mastra/server` directory.
+在 `@mastra/server` 目录中执行。
 
-## License
+## 许可证
 
-Released under the Elastic License 2.0. The full license text is available in
-this repository.
+根据 Elastic License 2.0 发布。完整许可证文本在此仓库中可用。

@@ -1,140 +1,139 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+此文件为 Claude Code (claude.ai/code) 在处理此仓库中的代码时提供指导。
 
-## Development Commands
+## 开发命令
 
-### Setup and Build
+### 设置和构建
 
-- `pnpm run setup` - Install dependencies and build CLI (required first step)
-- `pnpm build` - Build all packages (excludes examples and docs)
-- `pnpm build:packages` - Build core packages only
-- `pnpm build:core` - Build core framework package
-- `pnpm build:cli` - Build CLI and playground package
-- `pnpm build:memory` - Build memory package
-- `pnpm build:rag` - Build RAG package
-- `pnpm build:combined-stores` - Build all storage adapters
-- `pnpm build:deployers` - Build deployment adapters
-- `pnpm build:evals` - Build evaluation framework
-- `NODE_OPTIONS="--max-old-space-size=4096" pnpm build` - Build with increased memory if needed
+- `pnpm run setup` - 安装依赖并构建 CLI（必需的第一步）
+- `pnpm build` - 构建所有包（不包括示例和文档）
+- `pnpm build:packages` - 仅构建核心包
+- `pnpm build:core` - 构建核心框架包
+- `pnpm build:cli` - 构建 CLI 和 playground 包
+- `pnpm build:memory` - 构建内存包
+- `pnpm build:rag` - 构建 RAG 包
+- `pnpm build:combined-stores` - 构建所有存储适配器
+- `pnpm build:deployers` - 构建部署适配器
+- `pnpm build:evals` - 构建评估框架
+- `NODE_OPTIONS="--max-old-space-size=4096" pnpm build` - 如有需要，增加内存进行构建
 
-### Testing
+### 测试
 
-- `pnpm dev:services:up` - Start local Docker services (required for integration tests)
-- For faster testing: Build from root, then cd to specific package and run tests there
+- `pnpm dev:services:up` - 启动本地 Docker 服务（集成测试所需）
+- 更快的测试方法：先从根目录构建，然后 cd 到特定包并在此处运行测试
   ```bash
-  pnpm build  # Build from monorepo root first
+  pnpm build  # 先从 monorepo 根目录构建
   cd packages/memory
-  pnpm test   # Much faster than running all tests
+  pnpm test   # 比运行所有测试快得多
   ```
-- `pnpm test` - Run all tests (slow, use sparingly)
-- `pnpm test:watch` - Run tests in watch mode
-- Package-specific tests: `pnpm test:core`, `pnpm test:cli`, `pnpm test:memory`, `pnpm test:rag`, etc.
+- `pnpm test` - 运行所有测试（较慢，谨慎使用）
+- `pnpm test:watch` - 以监视模式运行测试
+- 包特定测试：`pnpm test:core`、`pnpm test:cli`、`pnpm test:memory`、`pnpm test:rag` 等
 
-### Development
+### 开发
 
-- `pnpm dev:services:down` - Stop local Docker services
-- `pnpm typecheck` - Run TypeScript checks across all packages
-- `pnpm prettier:format` - Format code with Prettier
-- `pnpm format` - Run linting across all packages with auto-fix (excludes examples, docs, integrations, playground)
+- `pnpm dev:services:down` - 停止本地 Docker 服务
+- `pnpm typecheck` - 在所有包中运行 TypeScript 检查
+- `pnpm prettier:format` - 使用 Prettier 格式化代码
+- `pnpm format` - 在所有包中运行 linting 并自动修复（不包括示例、文档、集成、playground）
 
-## Documentation
+## 文档
 
-### Documentation Locations
+### 文档位置
 
-- **Main docs**: `docs/` directory - Contains the full documentation site built with Next.js
-- **Course content**: `docs/src/course/` - Tutorial and learning materials
-- **API reference**: Generated from code comments and exported types
-- **Package READMEs**: Each package/integration has its own README.md
-- **Development guide**: `DEVELOPMENT.md` - Setup and contribution instructions
+- **主要文档**：`docs/` 目录 - 包含使用 Next.js 构建的完整文档站点
+- **课程内容**：`docs/src/course/` - 教程和学习材料
+- **API 参考**：从代码注释和导出类型生成
+- **包 README**：每个包/集成都有自己的 README.md
+- **开发指南**：`DEVELOPMENT.md` - 设置和贡献说明
 
-### Documentation Guidelines
+### 文档指南
 
-- Follow `.cursor/rules/writing-documentation.mdc` for writing style
-- Avoid marketing language, focus on technical implementation details
-- Examples should be practical and runnable
+- 遵循 `.cursor/rules/writing-documentation.mdc` 的写作风格
+- 避免营销语言，专注于技术实现细节
+- 示例应该是实用且可运行的
 
-## Architecture Overview
+## 架构概述
 
-Mastra is a modular AI framework built around central orchestration with pluggable components. Key architectural patterns:
+Mastra 是一个围绕中央编排构建的模块化 AI 框架，具有可插拔组件。关键架构模式：
 
-### Core Components
+### 核心组件
 
-- **Mastra Class** (`packages/core/src/mastra/`) - Central configuration hub with dependency injection
-- **Agents** (`packages/core/src/agent/`) - Primary AI interaction abstraction with tools, memory, and voice
-- **Tools System** (`packages/core/src/tools/`) - Dynamic tool composition supporting multiple sources
-- **Memory System** (`packages/core/src/memory/`) - Thread-based conversation persistence with semantic recall
-- **Workflows** (`packages/core/src/workflows/`) - Step-based execution with suspend/resume capabilities
-- **Storage Layer** (`packages/core/src/storage/`) - Pluggable backends with standardized interfaces
+- **Mastra 类** (`packages/core/src/mastra/`) - 具有依赖注入的中央配置中心
+- **Agents** (`packages/core/src/agent/`) - 具有工具、内存和语音的主要 AI 交互抽象
+- **工具系统** (`packages/core/src/tools/`) - 支持多来源的动态工具组合
+- **内存系统** (`packages/core/src/memory/`) - 基于线程的对话持久化，支持语义回忆
+- **Workflows** (`packages/core/src/workflows/`) - 具有暂停/恢复功能的基于步骤的执行
+- **存储层** (`packages/core/src/storage/`) - 具有标准化接口的可插拔后端
 
-### Package Structure
+### 包结构
 
-- **packages/** - Core framework packages (core, cli, deployer, rag, memory, evals, mcp, server)
-- **stores/** - Storage adapters (pg, chroma, pinecone, etc.)
-- **deployers/** - Platform deployment adapters (vercel, netlify, cloudflare)
-- **speech/** - Speech processing packages (voice synthesis and recognition)
-- **client-sdks/** - Client libraries for different platforms
-- **integrations/** - Third-party API integrations (github, firecrawl, etc.)
-- **examples/** - Demo applications
-- **auth/** - Authentication provider integrations
+- **packages/** - 核心框架包（core、cli、deployer、rag、memory、evals、mcp、server）
+- **stores/** - 存储适配器（pg、chroma、pinecone 等）
+- **deployers/** - 平台部署适配器（vercel、netlify、cloudflare）
+- **speech/** - 语音处理包（语音合成和识别）
+- **client-sdks/** - 不同平台的客户端库
+- **integrations/** - 第三方 API 集成（github、firecrawl 等）
+- **examples/** - 演示应用程序
+- **auth/** - 认证提供商集成
 
-### Key Patterns
+### 关键模式
 
-1. **Dependency Injection** - Components register with central Mastra instance
-2. **Plugin Architecture** - Pluggable storage, vectors, memory, deployers
-3. **Runtime Context** - Request-scoped context propagation for dynamic configuration
-4. **Message List Abstraction** - Unified message handling across formats
+1. **依赖注入** - 组件向中央 Mastra 实例注册
+2. **插件架构** - 可插拔的存储、向量、内存、部署器
+3. **运行时上下文** - 用于动态配置的请求范围上下文传播
+4. **消息列表抽象** - 跨格式的统一消息处理
 
-### Tools and Integrations
+### 工具和集成
 
-- Tools are dynamically composed from multiple sources (assigned, memory, toolsets, MCP)
-- Integrations are OpenAPI-based with OAuth/API key authentication
-- MCP (Model Context Protocol) enables external tool integration
+- 工具从多个来源动态组合（分配的、内存的、工具集、MCP）
+- 集成基于 OpenAPI，支持 OAuth/API 密钥认证
+- MCP (Model Context Protocol) 启用外部工具集成
 
-### Storage and Memory
+### 存储和内存
 
-- Pluggable storage backends with standardized interfaces
-- Memory system supports thread-based conversations, semantic recall, and working memory
-- Vector stores provide semantic search capabilities
+- 具有标准化接口的可插拔存储后端
+- 内存系统支持基于线程的对话、语义回忆和工作内存
+- 向量存储提供语义搜索功能
 
-## Development Guidelines
+## 开发指南
 
-### Documentation Writing
+### 文档写作
 
-Follow `.cursor/rules/writing-documentation.mdc`:
+遵循 `.cursor/rules/writing-documentation.mdc`：
 
-- Avoid marketing language ("powerful", "complete", "out-of-the-box")
-- Don't use "your needs", "production-ready", "makes it easy"
-- Focus on technical details rather than benefits
-- Write for engineers, not marketing
+- 避免营销语言（"强大的"、"完整的"、"开箱即用的"）
+- 不要使用 "您的需求"、"生产就绪的"、"使它变得容易"
+- 专注于技术细节而不是优势
+- 为工程师而不是营销人员写作
 
-### Monorepo Management
+### Monorepo 管理
 
-- Use pnpm (v9.7.0+) for package management
-- Build dependencies are managed through turbo.json
-- All packages use TypeScript with strict type checking
-- For testing: build from root first, then cd to specific package for faster iteration
+- 使用 pnpm (v9.7.0+) 进行包管理
+- 构建依赖通过 turbo.json 管理
+- 所有包都使用带有严格类型检查的 TypeScript
+- 对于测试：先从根目录构建，然后 cd 到特定包以加快迭代
 
-### Component Development
+### 组件开发
 
-- Components should integrate with central Mastra orchestration
-- Follow plugin patterns for extensibility
-- Implement standardized interfaces for storage/vector operations
-- Use telemetry decorators for observability
-- Support both sync and async operations where applicable
+- 组件应与中央 Mastra 编排集成
+- 遵循插件模式以实现可扩展性
+- 为存储/向量操作实现标准化接口
+- 使用遥测装饰器实现可观察性
+- 在适用的地方支持同步和异步操作
 
-### Testing Strategy
+### 测试策略
 
-- Integration tests require Docker services (`pnpm dev:services:up`)
-- Use Vitest for testing framework
-- Test files should be co-located with source code
-- For faster development: build from root, then test individual packages
-- Mock external services in unit tests
+- 集成测试需要 Docker 服务 (`pnpm dev:services:up`)
+- 使用 Vitest 作为测试框架
+- 测试文件应与源代码共存
+- 更快的开发：先从根目录构建，然后测试单个包
+- 在单元测试中模拟外部服务
 
-### Common Issues
+### 常见问题
 
-- Memory errors during build: Use `NODE_OPTIONS="--max-old-space-size=4096"`
-- Missing dependencies: Run `pnpm setup` first
-- Test failures: Ensure Docker services are running and build from root first
-- Type errors: Run `pnpm typecheck` to check all packages
-
+- 构建期间内存错误：使用 `NODE_OPTIONS="--max-old-space-size=4096"`
+- 缺少依赖：先运行 `pnpm setup`
+- 测试失败：确保 Docker 服务正在运行并先从根目录构建
+- 类型错误：运行 `pnpm typecheck` 检查所有包

@@ -1,13 +1,13 @@
-# Understanding System Prompts
+# 理解 System Prompts
 
-A good system prompt is crucial as it defines your agent's purpose, capabilities, and behavioral guidelines. It's the foundation that shapes how your agent will interact with users.
+一个好的 system prompt 至关重要，因为它定义了您的 agent 的目的、能力和行为指南。它是塑造您的 agent 如何与用户交互的基础。
 
-A well-crafted system prompt should include:
+一个精心制作的 system prompt 应该包括：
 
-- **Role definition**: What the agent is and what it does
-- **Core capabilities**: What tasks the agent can perform
-- **Behavioral guidelines**: How the agent should respond and interact
-- **Constraints**: What the agent should not do or discuss
-- **Success criteria**: What makes the agent's responses good
+- **角色定义**：agent 是什么以及它做什么
+- **核心能力**：agent 可以执行的任务
+- **行为指南**：agent 应该如何响应和交互
+- **约束条件**：agent 不应该做什么或讨论什么
+- **成功标准**：使 agent 响应良好的因素
 
-The system prompt acts as a set of instructions that guide the agent's behavior. It helps the agent understand its purpose and how it should interact with users. A clear and comprehensive system prompt will result in more consistent and helpful agent responses.
+system prompt 作为指导 agent 行为的一组指令。它帮助 agent 理解其目的以及应该如何与用户交互。一个清晰而全面的 system prompt 将产生更一致和有用的 agent 响应。

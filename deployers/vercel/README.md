@@ -1,24 +1,24 @@
 # @mastra/deployer-vercel
 
-A Vercel deployer for Mastra applications.
+适用于 Mastra 应用的 Vercel 部署器。
 
-## Features
+## 功能特性
 
-- Deploy Mastra applications to Vercel
-- Zero-configuration serverless deployments
-- Automatic environment variable synchronization
-- Support for production, preview, and development environments
-- Instant global deployments with Edge Functions
+- 部署 Mastra 应用到 Vercel
+- 零配置 serverless 部署
+- 环境变量自动同步
+- 支持生产、预览和开发环境
+- 使用 Edge Functions 的即时全球部署
 
-## Installation
+## 安装
 
 ```bash
 pnpm add @mastra/deployer-vercel
 ```
 
-## Usage
+## 用法
 
-The Vercel deployer is used as part of the Mastra framework:
+Vercel 部署器作为 Mastra 框架的一部分使用：
 
 ```typescript
 import { Mastra } from '@mastra/core';
@@ -32,31 +32,31 @@ const deployer = new VercelDeployer({
 
 const mastra = new Mastra({
   deployer,
-  // ... other Mastra configuration options
+  // ... 其他 Mastra 配置选项
 });
 ```
 
-## Configuration
+## 配置
 
-### Constructor Options
+### 构造函数选项
 
-- `teamSlug` (required): Your Vercel team slug
-- `projectName`: Name of your Vercel project (will be created if it doesn't exist)
-- `token`: Your Vercel API token (required for authentication)
+- `teamSlug` (必需): 您的 Vercel 团队 slug
+- `projectName`: 您的 Vercel 项目名称（如果不存在将创建）
+- `token`: 您的 Vercel API token（用于认证的必需项）
 
-## Project Structure
+## 项目结构
 
-The deployer creates:
+部署器创建：
 
 ```
 your-project/
-├── vercel.json     # Deployment configuration
-└── index.mjs       # Application entry point
+├── vercel.json     # 部署配置
+└── index.mjs       # 应用入口点
 ```
 
-### vercel.json Configuration
+### vercel.json 配置
 
-Default configuration:
+默认配置：
 
 ```json
 {
@@ -80,18 +80,18 @@ Default configuration:
 }
 ```
 
-## Environment Variables
+## 环境变量
 
-Environment variables are handled automatically through:
+通过以下方式自动处理环境变量：
 
-- `.env` files in your project
-- Environment variables passed through the Mastra configuration
-- Vercel's environment variable UI
+- 项目中的 `.env` 文件
+- 通过 Mastra 配置传递的环境变量
+- Vercel 的环境变量 UI
 
-## Deployment Process
+## 部署流程
 
-The deployer:
+部署器：
 
-1. Configures your project with the necessary files
-2. Deploys to Vercel using the CLI
-3. Synchronizes environment variables for future deployments
+1. 使用必要文件配置您的项目
+2. 使用 CLI 部署到 Vercel
+3. 同步环境变量以便将来部署

@@ -1,38 +1,38 @@
-# PDF to Questions Generator
+# PDF 转问题生成器
 
-A Mastra template that demonstrates **how to protect against token limits** by generating AI summaries from large datasets before passing as output from tool calls.
+一个 Mastra 模板，演示了**如何防止token限制**，通过从大型数据集生成 AI 摘要，然后将摘要作为工具调用的输出进行传递。
 
-> **🎯 Key Learning**: This template shows how to use large context window models (OpenAI GPT-4.1 Mini) as a "summarization layer" to compress large documents into focused summaries, enabling efficient downstream processing without hitting token limits.
+> **🎯 核心学习点**：此模板展示了如何使用大上下文窗口模型（OpenAI GPT-4.1 Mini）作为"摘要层"，将大型文档压缩成重点摘要，实现无token限制的高效下游处理。
 
-## Overview
+## 概述
 
-This template showcases a crucial architectural pattern for working with large documents and LLMs:
+此模板展示了一种与大型文档和LLM协作的关键架构模式：
 
-**🚨 The Problem**: Large PDFs can contain 50,000+ tokens, which would overwhelm context windows and cost thousands of tokens for processing.
+**🚨 问题所在**：大型 PDF 可能包含 50,000+ 个 tokens，这会使上下文窗口不堪重负，并花费数千个 token 来处理。
 
-**✅ The Solution**: Use a large context window model (OpenAI GPT-4.1 Mini) to generate focused summaries, then use those summaries for downstream processing.
+**✅ 解决方案**：使用具有大上下文窗口的模型（OpenAI GPT-4.1 Mini）来生成重点摘要，然后使用这些摘要进行下游处理。
 
-### Workflow
+### 工作流程
 
-1. **Input**: PDF URL
-2. **Download & Summarize**: Fetch PDF, extract text, and generate AI summary using OpenAI GPT-4.1 Mini
-3. **Generate Questions**: Create focused questions from the summary (not the full text)
+1. **输入**: PDF URL
+2. **下载和摘要**: 获取 PDF，提取文本，然后使用 OpenAI GPT-4.1 Mini 生成 AI 摘要
+3. **生成问题**: 从摘要（而非全文）创建有针对性的问题
 
-### Key Benefits
+### 核心优势
 
-- **📉 Token Reduction**: 80-95% reduction in token usage
-- **🎯 Better Quality**: More focused questions from key insights
-- **💰 Cost Savings**: Dramatically reduced processing costs
-- **⚡ Faster Processing**: Summaries are much faster to process than full text
+- **📉 Token 减少**: 80-95% 的 token 用量降低
+- **🎯 更高质量**: 来自关键洞察的更有针对性的问题
+- **💰 成本节省**: 显著降低处理成本
+- **⚡ 更快处理**: 摘要处理速度远快于全文处理
 
-## Prerequisites
+## 先决条件
 
-- Node.js 20.9.0 or higher
-- OpenAI API key (for both summarization and question generation)
+- Node.js 20.9.0 或更高版本
+- OpenAI API 密钥（用于摘要和问题生成）
 
-## Setup
+## 设置
 
-1. **Clone and install dependencies:**
+1. **克隆并安装依赖项：**
 
    ```bash
    git clone <repository-url>
@@ -40,43 +40,43 @@ This template showcases a crucial architectural pattern for working with large d
    pnpm install
    ```
 
-2. **Set up environment variables:**
+2. **设置环境变量：**
 
    ```bash
    cp .env.example .env
-   # Edit .env and add your API keys
+   # 编辑 .env 文件并添加您的 API 密钥
    ```
 
    ```env
    OPENAI_API_KEY="your-openai-api-key-here"
    ```
 
-3. **Run the example:**
+3. **运行示例：**
 
    ```bash
    npx tsx example.ts
    ```
 
-## 🏗️ Architectural Pattern: Token Limit Protection
+## 🏗️ 架构模式：Token 限制保护
 
-This template demonstrates a crucial pattern for working with large datasets in LLM applications:
+此模板演示了一种在 LLM 应用中处理大型数据集的关键模式：
 
-### The Challenge
+### 挑战所在
 
-When processing large documents (PDFs, reports, transcripts), you often encounter:
+在处理大型文档（PDF、报告、转录本）时，您经常会遇到：
 
-- **Token limits**: Documents can exceed context windows
-- **High costs**: Processing 50,000+ tokens repeatedly is expensive
-- **Poor quality**: LLMs perform worse on extremely long inputs
-- **Slow processing**: Large inputs take longer to process
+- **Token 限制**: 文档可能超出上下文窗口
+- **高成本**: 重复处理 50,000+ 个 token 非常昂贵
+- **质量下降**: LLM 在处理极长输入时性能变差
+- **处理缓慢**: 大型输入需要更长的处理时间
 
-### The Solution: Summarization Layer
+### 解决方案：摘要层
 
-Instead of passing raw data through your pipeline:
+不要在您的流水线中传递原始数据：
 
-1. **Use a large context window model** (OpenAI GPT-4.1 Mini) to digest the full content
-2. **Generate focused summaries** that capture key information
-3. **Pass summaries to downstream processing** instead of raw data
+1. **使用大上下文窗口模型**（OpenAI GPT-4.1 Mini）消化完整内容
+2. **生成重点摘要**，捕获关键信息
+3. **将摘要传递给下游处理**，而不是原始数据
 
 ### Implementation Details
 

@@ -1,17 +1,17 @@
-# Verifying Project Structure
+# 验证项目结构
 
-Let's check that your project has the correct structure. You should have:
+让我们检查您的项目是否具有正确的结构。您应该具有：
 
-1. A `src/mastra` directory that contains:
-   - `index.ts` - The main entry point for your Mastra project
-   - `agents/` - Directory containing individual agent files
-   - `tools/` - Directory containing individual tool files
-   - `workflows/` - Directory containing individual workflow files
+1. 一个 `src/mastra` 目录，包含：
+   - `index.ts` - 您的 Mastra 项目的主要入口点
+   - `agents/` - 包含单个 agent 文件的目录
+   - `tools/` - 包含单个 tool 文件的目录
+   - `workflows/` - 包含单个 workflow 文件的目录
 
-If the CLI created your project, you should see files like:
+如果 CLI 创建了您的项目，您应该看到如下文件：
 
-- `agents/weather-agent.ts` - Example weather agent
-- `tools/weather-tool.ts` - Example weather tool
-- `workflows/weather-workflow.ts` - Example weather workflow
+- `agents/weather-agent.ts` - 示例 weather agent
+- `tools/weather-tool.ts` - 示例 weather tool
+- `workflows/weather-workflow.ts` - 示例 weather workflow
 
-This structure is important because it follows the Mastra convention for organizing your code. The `index.ts` file is the main entry point for your Mastra project, while the `agents` and `tools` directories contain the definitions for your agents and tools, respectively.
+这个结构很重要，因为它遵循了 Mastra 组织代码的约定。`index.ts` 文件是您的 Mastra 项目的主要入口点，而 `agents` 和 `tools` 目录分别包含您的 agents 和 tools 的定义。

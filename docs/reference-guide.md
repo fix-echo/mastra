@@ -1,30 +1,30 @@
-# Mastra Reference Documentation
+# Mastra 参考文档
 
-This is a guide for community members (and LLMs!) for creating new reference docs and editing existing ones.
+这是为社区成员（和 LLM！）创建新参考文档和编辑现有文档的指南。
 
-Mastra organizes its reference documentation in folders with the same structure as its core concepts: `CLI`,`LLMs and Models`, `Agents`, `Engines`, `RAG`, `Observability`. Each function gets its own page, such as `src/pages/reference/agents/createTool.mdx`.
+Mastra 按照其核心概念的相同结构组织参考文档：`CLI`、`LLMs 和模型`、`Agents`、`Engines`、`RAG`、`可观察性`。每个函数都有自己的页面，例如 `src/pages/reference/agents/createTool.mdx`。
 
-We try to stay away from creating classes because it's not very TypeScript-y, but they get their own pages too.
+我们尽量避免创建类，因为这不太符合 TypeScript 的风格，但它们也有自己的页面。
 
-Below is a guide for reference documentation on a function. They illustrate `Parameters` and `Returns`, using a <PropertiesTable> component to list options, types, and defaults.
+以下是关于函数参考文档的指南。它们展示了 `Parameters` 和 `Returns`，使用 <PropertiesTable> 组件列出选项、类型和默认值。
 
 ---
 
-## 1. Title and Brief Description
+## 1. 标题和简要描述
 
-Start each reference page with a clear title and a short paragraph describing what the function, class, or feature does and why a user might need it.
+在每个参考页面开始时，使用清晰的标题和简短的段落描述函数、类或功能的作用以及用户为什么需要它。
 
 ```markdown
-# MyFunction Reference
+# MyFunction 参考
 
-The MyFunction utility in Mastra allows you to transform data before passing it to the engine.
+Mastra 中的 MyFunction 实用程序允许您在将数据传递给引擎之前转换数据。
 ```
 
 ---
 
-## 2. Usage Example
+## 2. 使用示例
 
-Provide a concise usage example or code snippet that shows how to import and use this function or feature in a typical Mastra project.
+提供一个简洁的使用示例或代码片段，展示如何在典型的 Mastra 项目中导入和使用此函数或功能。
 
 ```typescript
 import { MyFunction } from "@mastra/core";
@@ -39,27 +39,27 @@ const result = MyFunction({
 
 ---
 
-## 3. Parameters
+## 3. 参数
 
-Under a “Parameters” heading, list the function’s input parameters, including any nested properties. Use the <PropertiesTable> component to provide structured information about each parameter, such as its type, whether it’s optional, and default values.
+在"参数"标题下，列出函数的输入参数，包括任何嵌套属性。使用 <PropertiesTable> 组件提供关于每个参数的结构化信息，例如其类型、是否可选和默认值。
 
-For example:
+例如：
 
 ```mdx
-## Parameters
+## 参数
 
 <PropertiesTable
   content={[
     {
       name: "data",
       type: "string",
-      description: "The input data to be transformed.",
+      description: "要转换的输入数据。",
       isOptional: false,
     },
     {
       name: "options",
       type: "object",
-      description: "Additional options that modify the behavior of MyFunction.",
+      description: "修改 MyFunction 行为的附加选项。",
       isOptional: true,
       defaultValue: "{}",
     },
@@ -67,7 +67,7 @@ For example:
 />
 ```
 
-If the `options` object has its own properties, you can create a separate <PropertiesTable> to describe them:
+如果 `options` 对象有自己的属性，您可以创建一个单独的 <PropertiesTable> 来描述它们：
 
 ```mdx
 ### options
@@ -77,7 +77,7 @@ If the `options` object has its own properties, you can create a separate <Prope
     {
       name: "verbose",
       type: "boolean",
-      description: "Enables detailed logging when 'true'.",
+      description: "当为 'true' 时启用详细日志记录。",
       isOptional: true,
       defaultValue: "false",
     },
@@ -87,12 +87,12 @@ If the `options` object has its own properties, you can create a separate <Prope
 
 ---
 
-## 4. Returns
+## 4. 返回值
 
-If your function (or class method) returns a value, create a “Returns” heading. Briefly describe what the function returns and use <PropertiesTable> if the returned object has additional properties.
+如果您的函数（或类方法）返回一个值，请创建一个"返回值"标题。简要描述函数返回的内容，并在返回对象有附加属性时使用 <PropertiesTable>。
 
 ```mdx
-## Returns
+## 返回值
 
 <PropertiesTable
   content={[
@@ -100,25 +100,25 @@ If your function (or class method) returns a value, create a “Returns” headi
       name: "transformedData",
       type: "string",
       description:
-        "The final transformed data after applying the function logic.",
+        "应用函数逻辑后的最终转换数据。",
     },
     {
       name: "metadata",
       type: "object",
-      description: "Additional information about the transformation.",
+      description: "关于转换的附加信息。",
     },
   ]}
 />
 ```
 
-## 5. Additional Notes or Examples
+## 5. 附加说明或示例
 
-If there are advanced use cases, edge cases, or performance considerations, add them in a separate section. Consider referencing relevant files or sections of code if they provide additional clarity.
+如果有高级用例、边缘情况或性能考虑，请在单独的部分中添加它们。如果它们提供额外的清晰度，请考虑引用相关文件或代码部分。
 
 ````markdown
-## Additional Examples
+## 附加示例
 
-For a more advanced usage, see “transformDataSync” in the following file:
+对于更高级的用法，请参见以下文件中的"transformDataSync"：
 
 ```ts filename="src/examples/advancedUsage/transformDataSync.ts"
 import { MyFunction } from "@mastra/core";
@@ -133,24 +133,24 @@ export async function transformDataSync(data: string) {
 ```
 ````
 
-## 6. Cross-Link to Related Docs
+## 6. 相关文档交叉链接
 
-Where possible, link to any other relevant references—like other methods or classes that work closely with the feature. This helps users discover related functionality.
+在可能的情况下，链接到任何其他相关的参考——比如与该功能密切相关的其他方法或类。这有助于用户发现相关功能。
 
 ```markdown
-### Related
+### 相关
 
-- [Engine Configuration](/guide/reference/engine.mdx)
-- [Agent Class Reference](/guide/reference/agent.mdx)
+- [引擎配置](/guide/reference/engine.mdx)
+- [Agent 类参考](/guide/reference/agent.mdx)
 ```
 
-## Conclusion
+## 结论
 
-By consistently following these guidelines, you ensure that Mastra’s reference documentation remains clear, easy to navigate, and provides all the essential details community members need to use Mastra effectively.
+通过一致地遵循这些指南，您可以确保 Mastra 的参考文档保持清晰、易于导航，并提供社区成员有效使用 Mastra 所需的所有基本细节。
 
-- Start with a concise **description**.
-- Provide a **usage example**.
-- Present **parameters** in a `<PropertiesTable>`.
-- Show **returns** in another `<PropertiesTable>` (if applicable).
-- Include **additional examples** or **notes** for advanced usage.
-- **Cross-link** to relevant sections or features.
+- 以简洁的**描述**开始。
+- 提供**使用示例**。
+- 在 `<PropertiesTable>` 中呈现**参数**。
+- 在另一个 `<PropertiesTable>` 中显示**返回值**（如果适用）。
+- 为高级用法包含**附加示例**或**说明**。
+- **交叉链接**到相关部分或功能。

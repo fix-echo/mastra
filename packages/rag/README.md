@@ -1,18 +1,18 @@
 # @mastra/rag
 
-The Retrieval-Augmented Generation (RAG) module contains document processing and embedding utilities.
+检索增强生成 (RAG) 模块包含文档处理和嵌入工具。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/rag
 ```
 
-## Components
+## 组件
 
 ### Document
 
-The `MDocument` class represents text content with associated metadata:
+`MDocument` 类表示带有相关元数据的文本内容：
 
 ```typescript
 import { MDocument } from '@mastra/rag';
@@ -23,4 +23,4 @@ const doc = new MDocument({
 });
 ```
 
-[Documentation](https://mastra.ai/reference/rag/document)
+[文档](https://mastra.ai/reference/rag/document)

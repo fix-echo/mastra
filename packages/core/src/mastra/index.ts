@@ -52,16 +52,16 @@ export interface Config<
   bundler?: BundlerConfig;
 
   /**
-   * Server middleware functions to be applied to API routes
-   * Each middleware can specify a path pattern (defaults to '/api/*')
-   * @deprecated use server.middleware instead
+   * 要应用到API路由的服务器中间件函数
+   * 每个中间件可以指定路径模式（默认值为'/api/*'）
+   * @已弃用 请使用server.middleware代替
    */
   serverMiddleware?: Array<{
     handler: (c: any, next: () => Promise<void>) => Promise<Response | void>;
     path?: string;
   }>;
 
-  // @deprecated add memory to your Agent directly instead
+  // @已弃用 请直接将memory添加到Agent中 instead
   memory?: never;
 }
 
@@ -102,21 +102,21 @@ export class Mastra<
   #idGenerator?: MastraIdGenerator;
 
   /**
-   * @deprecated use getTelemetry() instead
+   * @已弃用 请使用getTelemetry()代替
    */
   get telemetry() {
     return this.#telemetry;
   }
 
   /**
-   * @deprecated use getStorage() instead
+   * @已弃用 请使用getStorage()代替
    */
   get storage() {
     return this.#storage;
   }
 
   /**
-   * @deprecated use getMemory() instead
+   * @已弃用 请使用getMemory()代替
    */
   get memory() {
     return this.#memory;
@@ -127,8 +127,8 @@ export class Mastra<
   }
 
   /**
-   * Generate a unique identifier using the configured generator or default to crypto.randomUUID()
-   * @returns A unique string ID
+   * 使用配置的生成器生成唯一标识符，或默认使用crypto.randomUUID()
+   * @returns 唯一字符串ID
    */
   public generateId(): string {
     if (this.#idGenerator) {
@@ -138,7 +138,7 @@ export class Mastra<
           id: 'MASTRA_ID_GENERATOR_RETURNED_EMPTY_STRING',
           domain: ErrorDomain.MASTRA,
           category: ErrorCategory.USER,
-          text: 'ID generator returned an empty string, which is not allowed',
+          text: 'ID生成器返回了空字符串，这是不允许的',
         });
         this.#logger?.trackException(error);
         throw error;
@@ -165,7 +165,7 @@ export class Mastra<
       TMCPServers
     >,
   ) {
-    // Store server middleware with default path
+    // 存储带有默认路径的服务器中间件
     if (config?.serverMiddleware) {
       this.#serverMiddleware = config.serverMiddleware.map(m => ({
         handler: m.handler,
@@ -174,7 +174,7 @@ export class Mastra<
     }
 
     /*
-      Logger
+      日志记录器
     */
 
     let logger: TLogger;
@@ -200,26 +200,26 @@ export class Mastra<
     }
 
     /*
-    Telemetry
+    遥测(Telemetry)
     */
 
     this.#telemetry = Telemetry.init(config?.telemetry);
 
-    // Warn if telemetry is enabled but the instrumentation global is not set
+    // 如果启用了遥测但未设置instrumentation全局变量，发出警告
     if (
       config?.telemetry?.enabled !== false &&
       typeof globalThis !== 'undefined' &&
       (globalThis as any).___MASTRA_TELEMETRY___ !== true
     ) {
       this.#logger?.warn(
-        `Mastra telemetry is enabled, but the required instrumentation file was not loaded. ` +
-          `If you are using Mastra outside of the mastra server environment, see: https://mastra.ai/en/docs/observability/tracing#tracing-outside-mastra-server-environment`,
-        `If you are using a custom instrumentation file or want to disable this warning, set the globalThis.___MASTRA_TELEMETRY___ variable to true in your instrumentation file.`,
+        `已启用Mastra遥测，但未加载所需的instrumentation文件。` +
+          `如果你在mastra服务器环境之外使用Mastra，请参阅：https://mastra.ai/en/docs/observability/tracing#tracing-outside-mastra-server-environment`,
+        `如果你正在使用自定义instrumentation文件或想要禁用此警告，请在instrumentation文件中将globalThis.___MASTRA_TELEMETRY___变量设置为true。`,
       );
     }
 
     /*
-    AI Tracing
+    AI跟踪
     */
 
     if (config?.observability) {
@@ -227,7 +227,7 @@ export class Mastra<
     }
 
     /*
-      Storage
+      存储(Storage)
     */
     if (this.#telemetry && storage) {
       this.#storage = this.#telemetry.traceClass(storage, {
@@ -239,7 +239,7 @@ export class Mastra<
     }
 
     /*
-    Vectors
+    向量(Vectors)
     */
     if (config?.vectors) {
       let vectors: Record<string, MastraVector> = {};
@@ -286,12 +286,12 @@ export class Mastra<
         domain: ErrorDomain.MASTRA,
         category: ErrorCategory.USER,
         text: `
-  Memory should be added to Agents, not to Mastra.
+  内存(Memory)应添加到Agent，而不是Mastra。
 
-Instead of:
+而不是：
   new Mastra({ memory: new Memory() })
 
-do:
+应该：
   new Agent({ memory: new Memory() })
 `,
       });
@@ -315,7 +315,7 @@ do:
     }
 
     /*
-    Agents
+    代理(Agents)
     */
     const agents: Record<string, Agent> = {};
     if (config?.agents) {
@@ -325,7 +325,7 @@ do:
             id: 'MASTRA_AGENT_REGISTRATION_DUPLICATE_ID',
             domain: ErrorDomain.MASTRA,
             category: ErrorCategory.USER,
-            text: `Agent with name ID:${key} already exists`,
+            text: `已存在名为ID:${key}的代理`,
             details: {
               agentId: key,
             },
@@ -352,7 +352,7 @@ do:
     this.#agents = agents as TAgents;
 
     /*
-    Networks
+    网络(Networks)
     */
     this.#networks = {} as TNetworks;
     this.#vnext_networks = {} as TVNextNetworks;
@@ -374,7 +374,7 @@ do:
     }
 
     /*
-    Legacy Workflows
+    传统工作流(Legacy Workflows)
     */
     this.#legacy_workflows = {} as TLegacyWorkflows;
 
@@ -808,9 +808,9 @@ do:
   }
 
   /**
-   * Get a specific network by ID
-   * @param networkId - The ID of the network to retrieve
-   * @returns The network with the specified ID, or undefined if not found
+   * 根据ID获取特定网络
+   * @param networkId - 要检索的网络ID
+   * @returns 指定ID的网络，如果未找到则返回undefined
    */
   public getNetwork(networkId: string): AgentNetwork | undefined {
     const networks = this.getNetworks();
@@ -928,21 +928,21 @@ do:
   }
 
   /**
-   * Get all registered MCP server instances.
-   * @returns A record of MCP server ID to MCPServerBase instance, or undefined if none are registered.
+   * 获取所有已注册的MCP服务器实例。
+   * @returns MCP服务器ID到MCPServerBase实例的映射记录，如果没有注册则返回undefined。
    */
   public getMCPServers(): Record<string, MCPServerBase> | undefined {
     return this.#mcpServers;
   }
 
   /**
-   * Get a specific MCP server instance.
-   * If a version is provided, it attempts to find the server with that exact logical ID and version.
-   * If no version is provided, it returns the server with the specified logical ID that has the most recent releaseDate.
-   * The logical ID should match the `id` property of the MCPServer instance (typically set via MCPServerConfig.id).
-   * @param serverId - The logical ID of the MCP server to retrieve.
-   * @param version - Optional specific version of the MCP server to retrieve.
-   * @returns The MCP server instance, or undefined if not found or if the specific version is not found.
+   * 获取特定MCP服务器实例。
+   * 如果提供了版本，它会尝试查找具有该确切逻辑ID和版本的服务器。
+   * 如果未提供版本，它会返回具有指定逻辑ID并具有最近发布日期的服务器。
+   * 逻辑ID应与MCPServer实例的`id`属性匹配（通常通过MCPServerConfig.id设置）。
+   * @param serverId - 要检索的MCP服务器的逻辑ID。
+   * @param version - 要检索的MCP服务器的可选特定版本。
+   * @returns MCP服务器实例，如果未找到或特定版本未找到则返回undefined。
    */
   public getMCPServer(serverId: string, version?: string): MCPServerBase | undefined {
     if (!this.#mcpServers) {
@@ -1002,7 +1002,7 @@ do:
   }
 
   /**
-   * Shutdown Mastra and clean up all resources
+   * 关闭Mastra并清理所有资源
    */
   async shutdown(): Promise<void> {
     // Shutdown AI tracing registry and all instances

@@ -1,15 +1,15 @@
-# Testing Your Tool
+# 测试您的 Tool
 
-Let's test our tool and agent in the playground:
+让我们在 playground 中测试我们的工具和 agent：
 
-1. Make sure your development server is running with `npm run dev`
-2. Open the playground at http://localhost:4111/
-3. You can test the tool directly in the Tools tab to make sure it's working
-4. Then, try asking your agent questions like:
+1. 确保您的开发服务器正在运行 `npm run dev`
+2. 在 http://localhost:4111/ 打开 playground
+3. 您可以在 Tools 标签中直接测试工具以确保其正常工作
+4. 然后，尝试问您的 agent 问题，例如：
    - "Can you show me my recent transactions?"
    - "How much did I spend on Amazon?"
    - "What was my largest transaction this month?"
 
-Your agent should now be able to fetch the transaction data and answer questions about it. However, it doesn't yet have memory, so it won't remember previous conversations. We'll add that in the next step.
+您的 agent 现在应该能够获取交易数据并回答相关问题。但是，它还没有记忆功能，因此不会记住之前的对话。我们将在下一步中添加这个功能。
 
-Testing your tool directly in the playground is a great way to verify that it's working correctly before integrating it with your agent. This helps you identify and fix any issues with the tool itself before troubleshooting potential issues with the agent's use of the tool.
+在 playground 中直接测试您的工具是在将其与您的 agent 集成之前验证其是否正常工作的好方法。这有助于您识别并修复工具本身的任何问题，然后再排查 agent 使用工具的潜在问题。

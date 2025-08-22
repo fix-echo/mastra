@@ -1,20 +1,20 @@
 # @mastra/core
 
-Mastra is the Typescript framework for building AI agents and assistants. It’s used by some of the largest companies in the world to build internal AI automation tooling and customer-facing agents.
+Mastra 是用于构建 AI Agents 和助手的 Typescript 框架。世界上一些最大的公司使用它来构建内部 AI 自动化工具和面向客户的 Agents。
 
-This is the `core` package, which includes the main functionality of Mastra, including agents, workflows, tools, and telemetry.
+这是 `core` 包，包含 Mastra 的主要功能，包括 Agents、Workflows、Tools 和遥测。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/core
 ```
 
-## Core Components
+## 核心组件
 
 ### Agents (`/agent`)
 
-Mastra agents are autonomous AI entities that can understand instructions, use tools, and complete tasks. They encapsulate LLM interactions and can maintain conversation history, use provided tools, and follow specific behavioral guidelines through instructions.
+Mastra Agents 是可以理解指令、使用工具和完成任务的自主 AI 实体。它们封装了 LLM 交互，可以维护对话历史、使用提供的工具，并通过指令遵循特定的行为准则。
 
 ```typescript
 import { Agent } from '@mastra/core/agent';
@@ -24,15 +24,15 @@ const agent = new Agent({
   name: 'my-agent',
   instructions: 'Your task-specific instructions',
   model: openai('gpt-4o-mini'),
-  tools: {}, // Optional tools
+  tools: {}, // 可选工具
 });
 ```
 
-[Agent documentation →](https://mastra.ai/docs/agents/overview)
+[Agent 文档 →](https://mastra.ai/docs/agents/overview)
 
 ### Workflows (`/workflows`)
 
-Mastra workflows are a graph-based execution engine allowing you to chain, branch, and parallelize LLM calls. You can orchestrate complex AI tasks by combining multiple actions. Workflows handle state management, error recovery, and can include conditional logic.
+Mastra Workflows 是一个基于图形的执行引擎，允许您链接、分支和并行化 LLM 调用。您可以通过组合多个操作来编排复杂的 AI 任务。Workflows 处理状态管理、错误恢复，并可以包含条件逻辑。
 
 ```typescript
 import { createWorkflow } from '@mastra/core/workflows';
@@ -43,16 +43,16 @@ const workflow = createWorkflow({
   inputSchema: z.object({}),
   outputSchema: z.object({})
   steps: [
-    // Workflow steps
+    // Workflow 步骤
   ],
 });
 ```
 
-[Workflow documentation →](https://mastra.ai/docs/workflows/overview)
+[Workflow 文档 →](https://mastra.ai/docs/workflows/overview)
 
 ### Tools (`/tools`)
 
-Tools are functions that agents can use to interact with external systems or perform specific tasks. Each tool has a clear description and schema, making it easy for AI to understand and use them effectively.
+Tools 是 Agents 可以用来与外部系统交互或执行特定任务的函数。每个工具都有清晰的描述和模式，使 AI 能够轻松理解和有效使用它们。
 
 ```typescript
 import { createTool } from '@mastra/core/tools';
@@ -65,16 +65,16 @@ const weatherInfo = createTool({
   }),
   description: 'Fetches the current weather information for a given city',
   execute: async ({ context: { city } }) => {
-    // Tool implementation
+    // 工具实现
   },
 });
 ```
 
-[Tools documentation →](https://mastra.ai/docs/agents/adding-tools)
+[Tools 文档 →](https://mastra.ai/docs/agents/adding-tools)
 
 ### Evals (`/eval`)
 
-The evaluation system enables quantitative assessment of AI outputs. Create custom metrics to measure specific aspects of AI performance, from response quality to task completion accuracy.
+评估系统能够对 AI 输出进行定量评估。创建自定义指标来衡量 AI 性能的特定方面，从响应质量到任务完成准确性。
 
 ```typescript
 import { Agent } from '@mastra/core/agent';
@@ -96,11 +96,11 @@ const agent = new Agent({
 });
 ```
 
-[More evals documentation →](https://mastra.ai/docs/evals/overview)
+[更多 evals 文档 →](https://mastra.ai/docs/evals/overview)
 
 ### Logger (`/logger`)
 
-The logging system provides structured, leveled logging with multiple transport options. It supports debug information, performance monitoring, and error tracking across your AI applications.
+日志系统提供结构化、分层的日志记录，具有多种传输选项。它支持调试信息、性能监控和跨 AI 应用程序的错误跟踪。
 
 ```typescript
 import { LogLevel } from '@mastra/core';
@@ -112,11 +112,11 @@ const logger = new PinoLogger({
 });
 ```
 
-[More logging documentation →](https://mastra.ai/reference/observability/logging)
+[更多日志记录文档 →](https://mastra.ai/reference/observability/logging)
 
 ### Telemetry (`/telemetry`)
 
-Telemetry provides OpenTelemetry (Otel) integration for comprehensive monitoring of your AI systems. Track latency, success rates, and system health with distributed tracing and metrics collection.
+遥测提供 OpenTelemetry (Otel) 集成，用于全面监控您的 AI 系统。通过分布式追踪和指标收集来跟踪延迟、成功率和系统健康状况。
 
 ```typescript
 import { Mastra } from '@mastra/core';
@@ -137,11 +137,11 @@ const mastra = new Mastra({
 });
 ```
 
-[More Telemetry documentation →](https://mastra.ai/reference/observability/telemetry)
+[更多遥测文档 →](https://mastra.ai/reference/observability/telemetry)
 
-## Additional Resources
+## 其他资源
 
-- [Getting Started Guide](https://mastra.ai/docs/getting-started/installation)
-- [API Reference](https://mastra.ai/reference)
-- [Examples](https://mastra.ai/docs/examples)
-- [Deployment Guide](https://mastra.ai/docs/deployment/overview)
+- [入门指南](https://mastra.ai/docs/getting-started/installation)
+- [API 参考](https://mastra.ai/reference)
+- [示例](https://mastra.ai/docs/examples)
+- [部署指南](https://mastra.ai/docs/deployment/overview)

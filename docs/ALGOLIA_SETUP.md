@@ -1,30 +1,30 @@
-# Algolia Search Setup
+# Algolia 搜索设置
 
-This documentation site has been migrated from Pagefind to Algolia for search functionality. Follow these steps to set up Algolia search.
+此文档站点已从 Pagefind 迁移至 Algolia 以实现搜索功能。按照以下步骤设置 Algolia 搜索。
 
-## Prerequisites
+## 先决条件
 
-1. An Algolia account (sign up at [algolia.com](https://www.algolia.com/))
-2. An Algolia application with a search index
+1. Algolia 账户（在 [algolia.com](https://www.algolia.com/) 注册）
+2. 具有搜索索引的 Algolia 应用程序
 
-## Environment Variables
+## 环境变量
 
-Create a `.env` file in the `docs` directory with the following variables:
+在 `docs` 目录中创建一个 `.env` 文件，包含以下变量：
 
 ```bash
-# Required for search functionality
+# 搜索功能所需
 NEXT_PUBLIC_ALGOLIA_APP_ID=your_algolia_app_id
 NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=your_algolia_search_api_key
 ```
 
-## Getting Your Algolia Credentials
+## 获取您的 Algolia 凭据
 
-1. **App ID**: Found in your Algolia dashboard under "Settings" → "API Keys"
-2. **Search API Key**: The public search-only API key from the same location
+1. **App ID**: 在您的 Algolia 仪表板中找到，位于 "Settings" → "API Keys" 下
+2. **Search API Key**: 同一位置的公共仅搜索 API 密钥
 
-## Index Configuration
+## 索引配置
 
-The search hook expects an index named `crawler_mastra crawler` by default. You can customize this by passing `indexName` in the search options:
+搜索钩子默认期望一个名为 `crawler_mastra crawler` 的索引。您可以通过在搜索选项中传递 `indexName` 来自定义此设置：
 
 ```typescript
 const searchOptions: AlgoliaSearchOptions = {
@@ -37,12 +37,12 @@ const searchOptions: AlgoliaSearchOptions = {
 };
 ```
 
-## Indexing Your Content
+## 索引您的内容
 
-You'll need to set up a process to index your documentation content. This can be done using:
+您需要设置一个过程来索引您的文档内容。这可以通过以下方式完成：
 
-1. **Algolia Crawler**: Automated web crawling
-2. **DocSearch**: Algolia's documentation-specific solution
-3. **Custom indexing script**: Using the Algolia API
+1. **Algolia Crawler**: 自动化网页爬取
+2. **DocSearch**: Algolia 的文档专用解决方案
+3. **自定义索引脚本**: 使用 Algolia API
 
-We currently have a web crawler that indexes the content of the website daily.
+我们目前有一个网络爬虫每天索引网站内容。

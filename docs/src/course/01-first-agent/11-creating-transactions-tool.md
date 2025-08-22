@@ -1,23 +1,23 @@
-# Creating the getTransactions Tool
+# 创建 getTransactions Tool
 
-Let's create a tool that fetches transaction data from a Google Sheet. We'll create a new file called `tools/get-transactions-tool.ts`.
+让我们创建一个从 Google Sheet 获取交易数据的工具。我们将创建一个名为 `tools/get-transactions-tool.ts` 的新文件。
 
-First, create the new tool file at src/mastra/tools/get-transactions-tool.ts
+首先，在 src/mastra/tools/get-transactions-tool.ts 创建新的工具文件
 
-Now add the necessary imports:
+现在添加必要的导入：
 
 ```typescript
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 ```
 
-Now, let's create our tool:
+现在，让我们创建我们的工具：
 
 ```typescript
 export const getTransactionsTool = createTool({
   id: "get-transactions",
   description: "Get transaction data from Google Sheets",
-  inputSchema: z.object({}), // No input parameters needed
+  inputSchema: z.object({}), // 不需要输入参数
   outputSchema: z.object({
     csvData: z.string(),
   }),
@@ -27,7 +27,7 @@ export const getTransactionsTool = createTool({
 });
 
 const getTransactions = async () => {
-  // This URL points to a public Google Sheet with transaction data
+  // 这个 URL 指向一个包含交易数据的公共 Google Sheet
   const url =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQWaCzJAFsF4owWRHQRLo4G0-ERv31c74OOZFnqLiTLaP7NweoiX7IXvzQud2H6bdUPnIqZEA485Ux/pub?gid=0&single=true&output=csv";
   const response = await fetch(url);
@@ -38,4 +38,4 @@ const getTransactions = async () => {
 };
 ```
 
-This tool fetches transaction data from a public Google Sheet and returns it as a string. The `createTool` function from Mastra makes it easy to define the tool's ID, description, input and output schemas, and execution logic.
+这个工具从公共 Google Sheet 获取交易数据并将其作为字符串返回。Mastra 的 `createTool` 函数使您可以轻松定义工具的 ID、描述、输入输出 schema 和执行逻辑。

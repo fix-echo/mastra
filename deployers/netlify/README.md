@@ -1,23 +1,23 @@
 # @mastra/deployer-netlify
 
-A Netlify deployer for Mastra applications.
+用于 Mastra 应用程序的 Netlify 部署器。
 
-## Features
+## 特性
 
-- Deploy Mastra applications to Netlify Functions
-- Automatic site creation and configuration
-- Serverless function support with Edge Functions
-- Zero-configuration deployments
+- 将 Mastra 应用部署到 Netlify Functions
+- 自动站点创建和配置
+- 支持使用 Edge Functions 的无服务器函数
+- 零配置的部署流程
 
-## Installation
+## 安装
 
 ```bash
 pnpm add @mastra/deployer-netlify
 ```
 
-## Usage
+## 用法
 
-The Netlify deployer is used as part of the Mastra framework:
+Netlify 部署器作为 Mastra 框架的一部分使用：
 
 ```typescript
 import { Mastra } from '@mastra/core';
@@ -31,21 +31,21 @@ const deployer = new NetlifyDeployer({
 
 const mastra = new Mastra({
   deployer,
-  // ... other Mastra configuration options
+  // ... 其他 Mastra 配置选项
 });
 ```
 
-## Configuration
+## 配置
 
-### Constructor Options
+### 构造函数选项
 
-- `scope` (required): Your Netlify team slug or ID
-- `projectName`: Name of your Netlify site (will be created if it doesn't exist)
-- `token`: Your Netlify authentication token
+- `scope` (必需): 您的 Netlify 团队标识名或 ID
+- `projectName`: 您的 Netlify 站点名称（如果尚不存在将被创建）
+- `token`: 您的 Netlify 身份验证令牌
 
-## Project Structure
+## 项目结构
 
-The deployer automatically creates the following structure:
+部署器会自动创建如下结构：
 
 ```
 your-project/
@@ -55,9 +55,9 @@ your-project/
 └── netlify.toml
 ```
 
-### netlify.toml Configuration
+### netlify.toml 配置
 
-The deployer creates a `netlify.toml` with the following defaults:
+部署器会创建包含以下默认设置的 `netlify.toml`:
 
 ```toml
 [functions]
@@ -71,18 +71,18 @@ status = 200
 to = "/.netlify/functions/api/:splat"
 ```
 
-## Environment Variables
+## 环境变量
 
-Environment variables are handled automatically through:
+环境变量通过以下方式自动处理：
 
-- `.env` files in your project
-- Environment variables passed through the Mastra configuration
-- Netlify's environment variable UI
+- 项目中的 `.env` 文件
+- 通过 Mastra 配置传递的环境变量
+- Netlify 的环境变量 UI 界面
 
-## Deployment Process
+## 部署流程
 
-The deployer will:
+部署器将执行以下步骤：
 
-1. Create a new site if it doesn't exist
-2. Configure the site with your environment variables
-3. Deploy your application to Netlify Functions
+1. 如果站点不存在则创建新站点
+2. 使用您的环境变量配置站点
+3. 将您的应用程序部署到 Netlify Functions

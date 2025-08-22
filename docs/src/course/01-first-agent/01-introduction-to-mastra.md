@@ -1,21 +1,21 @@
-# Getting Started with Mastra
+# 开始使用 Mastra
 
-Welcome to the first step of building your first Mastra agent! In this lesson, you'll learn how to create a simple agent that can read data from a public Google Sheet using a custom tool function.
+欢迎来到构建您的第一个 Mastra Agent 的第一步！在本课中，您将学习如何创建一个简单的 Agent，它可以通过自定义工具函数从公共 Google Sheet 中读取数据。
 
-## What is an Agent?
+## 什么是 Agent？
 
-An agent is software with non-deterministic code that can make autonomous decisions based on inputs and environment rather than following fixed, predictable instructions every time.
+Agent 是具有非确定性代码的软件，可以根据输入和环境做出自主决策，而不是每次都遵循固定的、可预测的指令。
 
-Agents are AI systems that can:
+Agents 是可以：
 
-- Perceive their environment through various inputs
-- Make decisions based on those inputs
-- Take actions to accomplish specific goals
-- Learn and adapt their behavior over time
+- 通过各种输入感知环境
+- 根据这些输入做出决策
+- 采取行动完成特定目标
+- 随时间学习和适应行为
 
-The best agents use several important features:
+最佳的 Agents 使用几个重要功能：
 
-1. **Memory**: They remember past interactions and learn from them
-2. **Planning**: They can break down complex tasks into smaller steps
-3. **Tool use**: They can leverage external tools and APIs to expand their capabilities
-4. **Feedback loops**: They can evaluate their own performance and adjust accordingly
+1. **记忆**: 它们记住过去的交互并从中学习
+2. **规划**: 它们可以将复杂任务分解为更小的步骤
+3. **工具使用**: 它们可以利用外部工具和 API 来扩展能力
+4. **反馈循环**: 它们可以评估自己的表现并相应调整

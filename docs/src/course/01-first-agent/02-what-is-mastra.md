@@ -1,11 +1,11 @@
-# What is Mastra?
+# 什么是 Mastra？
 
-[Mastra](https://github.com/mastra-ai/mastra) is an open-source AI Agent Framework for TypeScript that includes all the basic primitives for AI engineering right out of the box:
+[Mastra](https://github.com/mastra-ai/mastra) 是一个开源的 TypeScript AI Agent 框架，包含开箱即用的 AI 工程所需的所有基本原语：
 
-- Agents with tools, memory, and tracing
-- State-machine based workflows
-- Evals for tracking and measuring AI output
-- Storage for RAG pipelines
-- Local development playground
+- 带有工具、记忆和追踪的 Agents
+- 基于状态机的工作流
+- 用于跟踪和测量 AI 输出的评估
+- 用于 RAG 管道的存储
+- 本地开发环境
 
-With Mastra, you can quickly build, test, and deploy AI agents that can perform a wide variety of tasks. The framework is designed to be modular and extensible, allowing you to add new capabilities as needed.
+使用 Mastra，您可以快速构建、测试和部署能够执行各种任务的 AI Agents。该框架设计为模块化和可扩展的，允许您根据需要添加新功能。

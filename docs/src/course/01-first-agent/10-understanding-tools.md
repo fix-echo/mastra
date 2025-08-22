@@ -1,14 +1,14 @@
-# Understanding Tools in Mastra
+# 理解 Mastra 中的 Tools
 
-Tools in Mastra are functions that your agent can call to perform specific tasks. They extend your agent's capabilities by giving it access to external data sources, APIs, and functionality beyond what's available in the language model itself.
+Mastra 中的 Tools 是您的 agent 可以调用以执行特定任务的函数。它们通过让您的 agent 访问外部数据源、API 和语言模型本身无法提供的功能来扩展您 agent 的能力。
 
-Each tool has:
+每个 Tool 都有：
 
-- A unique ID that the agent uses to reference it
-- A clear description of what it does, which helps the agent understand when to use it
-- Input and output schemas that define the expected parameters and return values
-- An execute function that performs the actual work
+- agent 用来引用它的唯一 ID
+- 对其功能的清晰描述，这有助于 agent 理解何时使用它
+- 定义预期参数和返回值的输入和输出 schema
+- 执行实际工作的执行函数
 
-Tools are a powerful way to enhance your agent's abilities. They allow your agent to interact with the outside world, access specific data sources, and perform actions that would otherwise be impossible for a language model alone.
+Tools 是增强您 agent 能力的强大方式。它们允许您的 agent 与外部世界交互，访问特定的数据源，并执行语言模型本身无法完成的操作。
 
-In the next step, we'll create a custom tool that fetches transaction data from a Google Sheet.
+在下一步中，我们将创建一个从 Google Sheet 获取交易数据的自定义工具。

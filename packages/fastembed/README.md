@@ -1,28 +1,28 @@
 # @mastra/fastembed
 
-This package provides a FastEmbed embedding model integration for use with Mastra Memory.
+此包提供了一个 FastEmbed 嵌入模型集成，用于与 Mastra Memory 一起使用。
 
-**Note:** This functionality was previously included directly within `@mastra/core`. It has been moved to this separate package because `fastembed-js` relies on large native dependencies (like `onnxruntime-node`). Separating it keeps `@mastra/core` lightweight for users who may not need FastEmbed.
+**注意：** 此功能以前直接包含在 `@mastra/core` 中。它已被移到这个单独的包中，因为 `fastembed-js` 依赖于大型本地依赖（如 `onnxruntime-node`）。将其分离可以使不需要 FastEmbed 的用户保持 `@mastra/core` 的轻量级。
 
-## Installation
+## 安装
 
 ```bash
 pnpm add @mastra/fastembed
 ```
 
-## Usage
+## 用法
 
 ```typescript
 import { Memory } from '@mastra/memory';
 import { fastembed } from '@mastra/fastembed';
 
 const memory = new Memory({
-  // ... other memory options
+  // ... 其他内存选项
   embedder: fastembed,
 });
 
-// Now you can use this memory instance with an Agent
+// 现在您可以将此内存实例与 Agent 一起使用
 // const agent = new Agent({ memory, ... });
 ```
 
-This package wraps the `fastembed-js` library to provide an embedding model compatible with the AI SDK and Mastra.
+此包封装了 `fastembed-js` 库，以提供与 AI SDK 和 Mastra 兼容的嵌入模型。

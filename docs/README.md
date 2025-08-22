@@ -1,129 +1,129 @@
-# **Contributing to the Docs**
+# **为文档做贡献**
 
-Contributions to Mastra are welcome and highly appreciated.
-If you'd like to contribute, see our list of open issues. We also welcome you to open a PR or a new issue with your question.
+欢迎并高度赞赏对 Mastra 的贡献。
+如果您想做贡献，请查看我们的开放议题列表。我们也欢迎您提交 PR 或开启一个新议题来提出您的问题。
 
-The first step is to clone the Repo
+第一步是克隆仓库
 
 ```bash
 git clone git@github.com:mastra-ai/mastra.git
 cd docs
 ```
 
-## Environmental Variables
+## 环境变量
 
-Some features of the docs won't work unless you have private keys for these projects.
-These include:
+除非您拥有这些项目的私钥，否则文档的某些功能将无法工作。
+这些包括：
 
 - posthog
-- form subscription
-- analytics
-- chatbot
-- algolia search
+- 表单订阅
+- 分析
+- 聊天机器人
+- algolia 搜索
 
-Copy the Env file:
+复制环境文件：
 
 ```bash
 cp .env.example .env
 ```
 
-## Dev Preview
+## 开发预览
 
-Install the packages
+安装包
 
 ```bash
 npm i
 ```
 
-> The docs have a separate `package.json` file and is not part of the workspace so please do not use
-> `pnpm` or `yarn` to launch the docs.
+> 文档有独立的 `package.json` 文件，不属于工作区，所以请不要使用
+> `pnpm` 或 `yarn` 来启动文档。
 
-Run the appropriate CLI command in your terminal:
+在终端中运行相应的 CLI 命令：
 
 ```bash
 npm run dev
 ```
 
-The docs will be served on `localhost:3000/docs`.
+文档将在 `localhost:3000/docs` 上提供服务。
 
-## Search
+## 搜索
 
-Search is implemented with Algolia. To set up search functionality:
+搜索使用 Algolia 实现。要设置搜索功能：
 
-1. Create an Algolia account and application
-2. Set up your environment variables in `.env.local`:
+1. 创建 Algolia 账户和应用程序
+2. 在 `.env.local` 中设置您的环境变量：
 
 ```bash
    NEXT_PUBLIC_ALGOLIA_APP_ID=your_app_id
    NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=your_search_key
 ```
 
-3. Index your documentation content in Algolia
+3. 在 Algolia 中索引您的文档内容
 
-For detailed setup instructions, see [ALGOLIA_SETUP.md](./ALGOLIA_SETUP.md).
+有关详细设置说明，请参见 [ALGOLIA_SETUP.md](./ALGOLIA_SETUP.md)。
 
-## Making Changes
+## 进行更改
 
-The Mastra docs use [MDX](https://mdxjs.com/).
+Mastra 文档使用 [MDX](https://mdxjs.com/)。
 
-Adding new content requires:
+添加新内容需要：
 
-- YAML frontmatter
-- A navigation entry in a `meta.ts` file
-- Content for the docs
+- YAML 前置元数据
+- 在 `meta.ts` 文件中的导航条目
+- 文档内容
 
-Frontmatter looks like this. title and description are mandatory.
+前置元数据如下所示。标题和描述是必需的。
 
 ```bash
 ---
 title: "Introduction | Mastra Docs"
-description: "Mastra is a TypeScript agent framework. It helps you build AI applications and features quickly. It gives you the set of primitives you need: workflows, agents, RAG, integrations, syncs and evals."
+description: "Mastra 是一个 TypeScript Agent 框架。它帮助您快速构建 AI 应用程序和功能。它为您提供所需的基本组件：工作流、Agents、RAG、集成、同步和评估。"
 ---
 ```
 
-Navigation is defined in a relative `meta.ts` file. It modifies the title of the content in the sidebar
+导航在相对的 `meta.ts` 文件中定义。它修改侧边栏中内容的标题
 
 ```ts
 const meta = {
-  overview: "Overview",
+  overview: "概述",
 };
 
 export default meta;
 ```
 
-### Components and elements
+### 组件和元素
 
-Mastra is built on [Nextra](https://nextra.site/docs) and therefore we use custom components that `Nextra` provides which includes `callouts`, `Tabs` e.t.c
+Mastra 基于 [Nextra](https://nextra.site/docs) 构建，因此我们使用 `Nextra` 提供的自定义组件，包括 `callouts`、`Tabs` 等
 
-You can find the full list [on the nextra site](https://nextra.site/docs/built-ins)
+您可以在 [nextra 网站](https://nextra.site/docs/built-ins) 上找到完整列表
 
-### Guidelines
+### 指南
 
-**Finding Something to Work On:**
+**寻找要处理的内容：**
 
-1. Check the open issues labeled 'documentation' or 'good first issue'.
-2. Identify areas that are unclear, missing, or incorrect.
+1. 查看标记为 'documentation' 或 'good first issue' 的开放议题。
+2. 识别不清晰、缺失或不正确的区域。
 
-**Making Changes:**
+**进行更改：**
 
-1. Create a new branch for your changes (`git checkout -b my-docs-update`).
-2. Make your desired edits to the documentation files (usually found in the `docs/en` directory).
-3. Commit your changes with clear and concise messages.
+1. 为您的更改创建新分支 (`git checkout -b my-docs-update`)。
+2. 对文档文件进行所需的编辑（通常在 `docs/en` 目录中）。
+3. 使用清晰简洁的消息提交您的更改。
 
-**Style Guide:**
+**风格指南：**
 
-1. Ensure your writing is clear, concise, and uses consistent formatting.
+1. 确保您的写作清晰、简洁且使用一致的格式。
 
-**Submitting Changes:**
+**提交更改：**
 
-1. Push your branch to your fork (`git push origin my-docs-update`).
-2. Open a Pull Request (PR) against the main repository's `main` branch.
-3. Clearly describe the changes you've made in the PR description.
+1. 将您的分支推送到您的 fork (`git push origin my-docs-update`)。
+2. 针对主仓库的 `main` 分支开启 Pull Request (PR)。
+3. 在 PR 描述中清楚地描述您所做的更改。
 
-**Review Process:**
+**审查流程：**
 
-1. Maintainers will review your PR.
-2. Address any feedback or requested changes.
-3. Once approved, your changes will be merged.
+1. 维护者将审查您的 PR。
+2. 处理任何反馈或请求的更改。
+3. 一旦获得批准，您的更改将被合并。
 
-We appreciate your contributions to improving our documentation.
+我们感谢您为改进我们的文档所做的贡献。

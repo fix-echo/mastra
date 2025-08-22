@@ -1,24 +1,24 @@
 # @mastra/chroma
 
-Vector store implementation for Chroma using the official `chromadb` client with added dimension validation, collection management, and document storage capabilities.
+使用官方 `chromadb` 客户端的 Chroma 向量存储实现，增加了维度验证、集合管理和文档存储功能。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/chroma
 ```
 
-## Instantiation
+## 初始化
 
-### Local or Self-Deployments
+### 本地或自主部署
 
-To run a Chroma server, use the [Chroma CLI](https://docs.trychroma.com/docs/cli/db). It is available to you when you install this package.
+要运行 Chroma 服务器，请使用 [Chroma CLI](https://docs.trychroma.com/docs/cli/db)。安装此包后即可使用。
 
 ```shell
 chroma run
 ```
 
-You will now have a Chroma server running on `localhost:8000`.
+您将在 `localhost:8000` 上运行一个 Chroma 服务器。
 
 ```typescript
 import { ChromaVector } from '@mastra/chroma';
@@ -26,7 +26,7 @@ import { ChromaVector } from '@mastra/chroma';
 const vectorStore = new ChromaVector();
 ```
 
-If you run a Chroma server locally with a different configuration, or [deploy](https://docs.trychroma.com/guides/deploy/client-server-mode) a Chroma server yourself, you can configure your `ChromaVector` instantiation with specific connection details:
+如果您使用不同的配置本地运行 Chroma 服务器，或者自己[部署](https://docs.trychroma.com/guides/deploy/client-server-mode) Chroma 服务器，您可以用特定的连接详情配置 `ChromaVector` 实例：
 
 ```typescript
 import { ChromaVector } from '@mastra/chroma';
@@ -35,15 +35,15 @@ const vectorStore = new ChromaVector({
   host: 'your-host-address',
   port: 8000,
   ssl: false,
-  headers: {}, // any HTTP headers to send,
+  headers: {}, // 要发送的任何 HTTP 头部,
 });
 ```
 
 ### Chroma Cloud
 
-Provide your Chroma Cloud API key, tenant, and database.
+提供您的 Chroma Cloud API 密钥、租户和数据库。
 
-You can use the [Chroma CLI](https://docs.trychroma.com/docs/cli/db) to set these as environment variables: `chroma db connect [DB-NAME] --env-file`.
+您可以使用 [Chroma CLI](https://docs.trychroma.com/docs/cli/db) 将这些都设为环境变量：`chroma db connect [DB-NAME] --env-file`。
 
 ```typescript
 import { ChromaVector } from '@mastra/chroma';
@@ -55,14 +55,14 @@ const vectorStore = new ChromaVector({
 });
 ```
 
-## Usage
+## 使用方法
 
 ```typescript
 
-// Create a new collection
+// 创建新的集合
 await vectorStore.createIndex({ indexName: 'myCollection', dimension: 1536, metric: 'cosine' });
 
-// Add vectors with documents
+// 添加带文档的向量
 const vectors = [[0.1, 0.2, ...], [0.3, 0.4, ...]];
 const metadata = [{ text: 'doc1' }, { text: 'doc2' }];
 const documents = ['full text 1', 'full text 2'];
@@ -70,53 +70,53 @@ const ids = await vectorStore.upsert({
   indexName: 'myCollection',
   vectors,
   metadata,
-  documents, // store original text
+  documents, // 存储原始文本
 });
 
-// Query vectors with document filtering
+// 使用文档过滤查询向量
 const results = await vectorStore.query({
   indexName: 'myCollection',
   queryVector: [0.1, 0.2, ...],
   topK: 10, // topK
-  filter: { text: { $eq: 'doc1' } }, // metadata filter
+  filter: { text: { $eq: 'doc1' } }, // 元数据过滤器
   includeVector: false, // includeVector
-  documentFilter: { $contains: 'specific text' } // document content filter
+  documentFilter: { $contains: 'specific text' } // 文档内容过滤器
 });
 ```
 
-## Features
+## 功能特性
 
-- Vector similarity search with cosine, euclidean, and dot product metrics
-- Document storage and retrieval
-- Document content filtering
-- Strict vector dimension validation
-- Collection-based organization
-- Metadata filtering support
-- Optional vector inclusion in query results
-- Automatic UUID generation for vectors
-- Built-in collection caching for performance
-- Built on top of chromadb client
+- 支持余弦、欧几里德和点积度量的向量相似性搜索
+- 文档存储和检索
+- 文档内容过滤
+- 严格的向量维度验证
+- 基于集合的组织方式
+- 元数据过滤支持
+- 查询结果中可选包含向量
+- 为向量自动生成 UUID
+- 内置集合缓存以获得性能
+- 基于 chromadb 客户端构建
 
-## Methods
+## 方法
 
-- `createIndex({ indexName, dimension, metric? })`: Create a new collection
-- `upsert({ indexName, vectors, metadata?, ids?, documents? })`: Add or update vectors with optional document storage
-- `query({ indexName, queryVector, topK?, filter?, includeVector?, documentFilter? })`: Search for similar vectors with optional document filtering
-- `listIndexes()`: List all collections
-- `describeIndex(indexName)`: Get collection statistics
-- `deleteIndex(indexName)`: Delete a collection
+- `createIndex({ indexName, dimension, metric? })`: 创建新集合
+- `upsert({ indexName, vectors, metadata?, ids?, documents? })`: 添加或更新向量，可选文档存储
+- `query({ indexName, queryVector, topK?, filter?, includeVector?, documentFilter? })`: 搜索相似向量，可选文档过滤
+- `listIndexes()`: 列出所有集合
+- `describeIndex(indexName)`: 获取集合统计信息
+- `deleteIndex(indexName)`: 删除集合
 
-## Query Response Format
+## 查询响应格式
 
-Query results include:
+查询结果包括：
 
-- `id`: Vector ID
-- `score`: Distance/similarity score
-- `metadata`: Associated metadata
-- `document`: Original document text (if stored)
-- `vector`: Original vector (if includeVector is true)
+- `id`: 向量 ID
+- `score`: 距离/相似性评分
+- `metadata`: 关联元数据
+- `document`: 原始文档文本（如已存储）
+- `vector`: 原始向量（如 includeVector 为 true）
 
-## Related Links
+## 相关链接
 
-- [Chroma Documentation](https://docs.trychroma.com/)
-- [Chroma API Reference](https://docs.trychroma.com/api/client)
+- [Chroma 文档](https://docs.trychroma.com/)
+- [Chroma API 参考](https://docs.trychroma.com/api/client)

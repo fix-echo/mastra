@@ -1,34 +1,34 @@
 # @mastra/auth-clerk
 
-A Mastra authentication provider for Clerk, enabling seamless integration of Clerk authentication with Mastra applications.
+适用于 Clerk 的 Mastra 认证提供者，实现 Clerk 认证与 Mastra 应用的无缝集成。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/auth-clerk
-# or
+# 或者
 yarn add @mastra/auth-clerk
-# or
+# 或者
 pnpm add @mastra/auth-clerk
 ```
 
-## Usage
+## 用法
 
 ```typescript
 import { Mastra } from '@mastra/core';
 import { MastraAuthClerk } from '@mastra/auth-clerk';
 
-// Initialize the Clerk auth provider
+// 初始化 Clerk 认证提供者
 const clerkAuth = new MastraAuthClerk({
   jwksUri: 'your-jwks-uri',
   secretKey: 'your-secret-key',
   publishableKey: 'your-publishable-key',
 });
 
-// Or use environment variables
+// 或者使用环境变量
 const clerkAuth = new MastraAuthClerk();
 
-// Enable auth in Mastra
+// 在 Mastra 中启用认证
 const mastra = new Mastra({
   ...
   server: {
@@ -37,17 +37,17 @@ const mastra = new Mastra({
 });
 ```
 
-## Configuration
+## 配置
 
-The package can be configured either through constructor options or environment variables:
+该包可以通过构造函数选项或环境变量进行配置：
 
-### Environment Variables
+### 环境变量
 
-- `CLERK_JWKS_URI`: The JWKS URI for your Clerk instance
-- `CLERK_SECRET_KEY`: Your Clerk secret key
-- `CLERK_PUBLISHABLE_KEY`: Your Clerk publishable key
+- `CLERK_JWKS_URI`: 您的 Clerk 实例的 JWKS URI
+- `CLERK_SECRET_KEY`: 您的 Clerk 密钥
+- `CLERK_PUBLISHABLE_KEY`: 您的 Clerk 可发布密钥
 
-### Constructor Options
+### 构造函数选项
 
 ```typescript
 interface MastraAuthClerkOptions {
@@ -57,23 +57,23 @@ interface MastraAuthClerkOptions {
 }
 ```
 
-## Features
+## 功能特性
 
-- JWT token verification using Clerk's JWKS
-- User authentication and authorization
-- Organization membership verification
-- Seamless integration with Mastra's authentication system
+- 使用 Clerk 的 JWKS 进行 JWT token 验证
+- 用户认证和授权
+- 组织成员资格验证
+- 与 Mastra 认证系统的无缝集成
 
 ## API
 
 ### `authenticateToken(token: string): Promise<ClerkUser | null>`
 
-Verifies a JWT token and returns the associated user if valid.
+验证 JWT token 并返回关联的用户（如果有效）。
 
 ### `authorizeUser(user: ClerkUser): Promise<boolean>`
 
-Checks if a user is authorized by verifying their organization membership.
+通过验证用户的组织成员资格来检查用户是否被授权。
 
-## License
+## 许可证
 
 MIT

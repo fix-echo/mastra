@@ -1,28 +1,28 @@
-# The Mastra CLI
+# Mastra CLI
 
 ![Mastra Cli](https://github.com/mastra-ai/mastra/blob/main/packages/cli/mastra-cli.png)
 
-Mastra is the Typescript framework for building AI agents and assistants. It’s used by some of the largest companies in the world to build internal AI automation tooling and customer-facing agents.
+Mastra 是用于构建 AI Agents 和助手的 Typescript 框架。世界上一些最大的公司使用它来构建内部 AI 自动化工具和面向客户的 Agents。
 
-This is the CLI package, which allows you to:
+这是 CLI 包，允许您：
 
-- Create a new project
-- Spin up the Mastra dev server
-- Deploy to a Hono server, or a serverless environment like Cloudflare Workers or Vercel
+- 创建新项目
+- 启动 Mastra 开发服务器
+- 部署到 Hono 服务器，或无服务器环境如 Cloudflare Workers 或 Vercel
 
-## Installing the Mastra CLI
+## 安装 Mastra CLI
 
 ```bash copy
 npm i -g mastra
 ```
 
-## Commands
+## 命令
 
 ### Init
 
-`mastra init` is used for initializing a new project.
+`mastra init` 用于初始化新项目。
 
-This creates a mastra directory under `src` containing an `index.ts` entrypoint and an `agent` directory containing two sample agents.
+这会在 `src` 下创建一个 mastra 目录，包含一个 `index.ts` 入口点和一个包含两个示例 Agents 的 `agent` 目录。
 
 ```text
 project-root/
@@ -38,45 +38,45 @@ project-root/
 
 `mastra dev`
 
-This spins up a local development server that hosts `REST` endpoints for all agents and workflows. It also has a chat interface for testing them.
+这会启动一个本地开发服务器，为所有 Agents 和 Workflows 托管 `REST` 端点。它还有一个用于测试它们的聊天界面。
 
-The server is useful for testing and developing agents, workflows, and integrations without needing to deploy your application.
+该服务器对于测试和开发 Agents、Workflows 和集成非常有用，而无需部署您的应用程序。
 
-The server is available at `http://localhost:3000`.
+服务器在 `http://localhost:3000` 可用。
 
 ### Build
 
 `mastra build`
 
-This command builds your Mastra project for deployment to different environments. The build process:
+此命令为部署到不同环境而构建您的 Mastra 项目。构建过程：
 
-1. Reads your Mastra configuration
-2. Generates optimized files for your target environment
-3. Outputs them to a build directory
+1. 读取您的 Mastra 配置
+2. 为您的目标环境生成优化文件
+3. 将它们输出到构建目录
 
-Options:
+选项：
 
 ```bash
---dir     Directory containing Mastra files (default: src/mastra)
+--dir     包含 Mastra 文件的目录 (默认: src/mastra)
 ```
 
-Example usage:
+使用示例：
 
 ```bash
-# Build using default directory
+# 使用默认目录构建
 mastra build
 
-# Build from custom directory
+# 从自定义目录构建
 mastra build --dir path/to/mastra
 ```
 
-The build output is determined by your Mastra instance's deployer configuration:
+构建输出由您的 Mastra 实例的部署器配置决定：
 
 ```typescript
 const mastra = new Mastra({
   deployer: {
-    type: 'HONO', // Target environment (HONO, EXPRESS, NEXT)
-    // Environment-specific options
+    type: 'HONO', // 目标环境 (HONO, EXPRESS, NEXT)
+    // 环境特定选项
   },
 });
 ```
@@ -85,36 +85,36 @@ const mastra = new Mastra({
 
 `mastra lint`
 
-Validates your Mastra project structure and code.
+验证您的 Mastra 项目结构和代码。
 
-Options:
+选项：
 
 ```bash
---root    Path to your root folder
---tools   Comma-separated list of paths to tool files to include
+--root    您的根文件夹路径
+--tools   要包含的工具文件路径的逗号分隔列表
 ```
 
-Example usage:
+使用示例：
 
 ```bash
-# Lint default directory
+# Lint 默认目录
 mastra lint
 ```
 
-# Telemetry
+# 遥测
 
-This CLI collects anonymous usage data (no personal/sensitive info) to help improve Mastra. This includes:
+此 CLI 收集匿名使用数据（无个人/敏感信息）以帮助改进 Mastra。这包括：
 
-- Commands used
-- Command execution time
-- Error occurrences
-- System information (OS, Node version)
+- 使用的命令
+- 命令执行时间
+- 错误发生次数
+- 系统信息（操作系统、Node 版本）
 
-To opt-out:
+要选择退出：
 
-1. Add `MASTRA_TELEMETRY_DISABLED=1` to commands
+1. 在命令中添加 `MASTRA_TELEMETRY_DISABLED=1`
 
-## Local development
+## 本地开发
 
-1. clone the repo
-2. Run `pnpm i` to install deps
+1. 克隆仓库
+2. 运行 `pnpm i` 安装依赖

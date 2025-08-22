@@ -1,87 +1,87 @@
 # @mastra/deployer
 
-Core deployment infrastructure for Mastra applications, handling build, packaging, and deployment processes.
+Mastra 应用程序的核心部署基础设施，处理构建、打包和部署过程。
 
-## Installation
+## 安装
 
 ```bash
 npm install @mastra/deployer
 ```
 
-## Overview
+## 概述
 
-The `@mastra/deployer` package provides the foundational deployment infrastructure for Mastra applications. It handles:
+`@mastra/deployer` 包为 Mastra 应用程序提供基础部署基础设施。它处理：
 
-- Project building and bundling
-- Dependency management
-- Environment configuration
-- Development and production deployments
+- 项目构建和打包
+- 依赖管理
+- 环境配置
+- 开发和生产部署
 
-## Usage
+## 用法
 
 ```typescript
 import { Deployer } from '@mastra/deployer';
 
-// Create a deployer instance
+// 创建部署器实例
 const deployer = new Deployer({
   dir: '/path/to/project',
-  type: 'Deploy', // or 'Dev' for development mode
+  type: 'Deploy', // 或 'Dev' 用于开发模式
 });
 
-// Install dependencies
+// 安装依赖
 await deployer.install();
 
-// Write package.json
+// 写入 package.json
 await deployer.writePackageJson();
 
-// Get Mastra instance
+// 获取 Mastra 实例
 const { mastra } = await deployer.getMastra();
 ```
 
-## Configuration
+## 配置
 
-### Required Parameters
+### 必需参数
 
-- `dir`: Project directory path
-- `type`: Deployment type ('Deploy' or 'Dev')
+- `dir`: 项目目录路径
+- `type`: 部署类型 ('Deploy' 或 'Dev')
 
-## Features
+## 功能
 
-### Project Structure Management
+### 项目结构管理
 
-- Creates and manages `.mastra` directory
-- Handles package.json generation and updates
-- Manages project dependencies
+- 创建和管理 `.mastra` 目录
+- 处理 package.json 生成和更新
+- 管理项目依赖
 
-### Dependency Management
+### 依赖管理
 
-- Automatic dependency installation
-- Workspace dependency resolution
-- Version management for @mastra packages
+- 自动依赖安装
+- 工作区依赖解析
+- @mastra 包的版本管理
 
-### Environment Handling
+### 环境处理
 
-- Support for multiple environment files:
+- 支持多个环境文件：
   - `.env`
   - `.env.development`
   - `.env.local`
-- Environment variable validation and processing
+- 环境变量验证和处理
 
-### Build Process
+### 构建过程
 
-- Project bundling
-- Asset management
-- Source code transformation
+- 项目打包
+- 资源管理
+- 源代码转换
 
-### Development Support
+### 开发支持
 
-- Development server configuration
-- Hot reloading capabilities
-- Debug logging
+- 开发服务器配置
+- 热重载功能
+- 调试日志
 
-## Project Structure
+## 项目结构
 
-The deployer creates and manages the following structure:
+部署器创建和管理以下结构：
 
 ```
 your-project/
@@ -95,9 +95,9 @@ your-project/
 └── package.json
 ```
 
-## Package.json Management
+## Package.json 管理
 
-The deployer automatically manages dependencies in the `.mastra/package.json`:
+部署器自动管理 `.mastra/package.json` 中的依赖：
 
 ```json
 {
@@ -114,46 +114,46 @@ The deployer automatically manages dependencies in the `.mastra/package.json`:
 }
 ```
 
-## Methods
+## 方法
 
 ### `install()`
 
-Installs and updates project dependencies.
+安装和更新项目依赖。
 
 ### `writePackageJson()`
 
-Generates or updates the package.json in the .mastra directory.
+生成或更新 .mastra 目录中的 package.json。
 
 ### `getMastra()`
 
-Returns the Mastra instance for the project.
+返回项目的 Mastra 实例。
 
 ### `getMastraPath()`
 
-Returns the path to the .mastra directory.
+返回 .mastra 目录的路径。
 
-## Error Handling
+## 错误处理
 
-The deployer includes comprehensive error handling for:
+部署器包含对以下内容的全面错误处理：
 
-- Dependency installation failures
-- File system operations
-- Environment configuration issues
-- Build process errors
+- 依赖安装失败
+- 文件系统操作
+- 环境配置问题
+- 构建过程错误
 
-## Logging
+## 日志记录
 
-Built-in logging support through @mastra/core:
+通过 @mastra/core 的内置日志支持：
 
-- Debug information
-- Installation progress
-- Build status
-- Error reporting
+- 调试信息
+- 安装进度
+- 构建状态
+- 错误报告
 
-## Related Packages
+## 相关包
 
-- `@mastra/core`: Core Mastra functionality
-- `@mastra/loggers`: Logging infrastructure
-- Deployer implementations:
+- `@mastra/core`: 核心 Mastra 功能
+- `@mastra/loggers`: 日志基础设施
+- 部署器实现：
   - `@mastra/deployer-cloudflare`
-  - Other platform-specific deployers
+  - 其他平台特定的部署器

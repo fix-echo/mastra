@@ -1,8 +1,8 @@
-# Exporting Your Agent
+# 导出您的 Agent
 
-To make your agent available to the playground, you need to export it through the Mastra class in your `src/mastra/index.ts` file.
+为了使您的 agent 在 playground 中可用，您需要通过 `src/mastra/index.ts` 文件中的 Mastra 类导出它。
 
-First, import the necessary dependencies and your agent:
+首先，导入必要的依赖项和您的 agent：
 
 ```typescript
 import { Mastra } from "@mastra/core/mastra";
@@ -24,10 +24,10 @@ export const mastra = new Mastra({
 });
 ```
 
-This creates a new Mastra instance that includes:
+这将创建一个新的 Mastra 实例，包括：
 
-- Your financial agent
-- In-memory storage for development
-- A logger for debugging and monitoring
+- 您的金融 agent
+- 用于开发的内存存储
+- 用于调试和监控的记录器
 
-The Mastra class is the main entry point for your Mastra project. It's responsible for registering your agents and configuring the core services like storage and logging.
+Mastra 类是您 Mastra 项目的主要入口点。它负责注册您的 agent 并配置存储和记录等核心服务。

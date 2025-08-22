@@ -1,14 +1,14 @@
-# Understanding Memory in Agents
+# 理解 Agents 中的 Memory
 
-Memory is a crucial component for creating more natural and context-aware agents. It allows your agent to maintain context across multiple interactions with users.
+Memory 是创建更自然和有上下文意识的 agents 的关键组件。它允许您的 agent 在与用户的多次交互中保持上下文。
 
-Memory allows your agent to:
+Memory 允许您的 agent：
 
-- Remember previous user questions and its own responses
-- Maintain context across multiple interactions
-- Provide more personalized and relevant responses
-- Avoid asking for the same information repeatedly
+- 记住之前的用户问题及其自己的回复
+- 在多次交互中保持上下文
+- 提供更加个性化和相关的回复
+- 避免重复询问相同的信息
 
-Without memory, your agent would treat each interaction as if it were the first, leading to a disjointed and frustrating user experience. With memory, your agent can build on previous conversations, creating a more natural and helpful interaction.
+没有 memory，您的 agent 会将每次交互都当作第一次，导致 disjointed 和令人沮丧的用户体验。有了 memory，您的 agent 可以在之前的对话基础上构建，创造更自然和有帮助的交互。
 
-In the following steps, we'll add memory to our financial assistant agent to make it more context-aware and capable of providing better responses over time.
+在接下来的步骤中，我们将为我们的金融助手 agent 添加 memory，使其更具上下文意识，并能够随着时间推移提供更好的回复。

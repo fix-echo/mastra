@@ -86,7 +86,7 @@ function resolveMaybePromise<T, R = void>(value: T | Promise<T>, cb: (value: T) 
   return cb(value);
 }
 
-// Helper to resolve threadId from args (supports both new and old API)
+// 用于从参数中解析threadId的辅助函数（支持新旧API）
 function resolveThreadIdFromArgs(args: {
   memory?: AgentMemoryOption;
   threadId?: string;
@@ -149,7 +149,7 @@ export class Agent<
   #inputProcessors?: DynamicArgument<InputProcessor[]>;
   #outputProcessors?: DynamicArgument<OutputProcessor[]>;
 
-  // This flag is for agent network messages. We should change the agent network formatting and remove this flag after.
+  // 此标志用于代理网络消息。我们应更改代理网络格式并后续移除此标志。
   private _agentNetworkAppend = false;
 
   constructor(config: AgentConfig<TAgentId, TTools, TMetrics>) {
@@ -609,9 +609,9 @@ export class Agent<
   }
 
   /**
-   * Gets or creates an LLM instance based on the current model
-   * @param options Options for getting the LLM
-   * @returns A promise that resolves to the LLM instance
+   * 根据当前模型获取或创建LLM实例
+   * @param options 获取LLM的选项
+   * @returns 解析为LLM实例的Promise
    */
   public getLLM({
     runtimeContext = new RuntimeContext(),

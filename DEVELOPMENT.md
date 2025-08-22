@@ -1,169 +1,169 @@
-# Mastra Development Guide
+# Mastra 开发指南
 
-This guide provides instructions for developers who want to contribute to or work with the Mastra codebase.
+本指南为希望为 Mastra 代码库做贡献或与其一起工作的开发人员提供说明。
 
-## Prerequisites
+## 先决条件
 
 - **Node.js** (v20.0+)
-- **pnpm** (v9.7.0+) - Mastra uses pnpm for package management
-- **Docker** (for local development services)
+- **pnpm** (v9.7.0+) - Mastra 使用 pnpm 进行包管理
+- **Docker** (用于本地开发服务)
 
-## Repository Structure
+## 仓库结构
 
-Mastra is organized as a monorepo with the following key directories:
+Mastra 以 monorepo 形式组织，包含以下关键目录：
 
-- **packages/** - Core packages that make up the Mastra framework
-  - **core/** - The foundation of the Mastra framework that provides essential components including agent system, LLM abstractions, workflow orchestration, vector storage, memory management, and tools infrastructure
-  - **cli/** - Command-line interface for creating, running, and managing Mastra projects, including the interactive playground UI for testing agents and workflows
-  - **deployer/** - Server infrastructure and build tools for deploying Mastra applications to various environments, with API endpoints for agents, workflows, and memory management
-  - **rag/** - Retrieval-augmented generation tools for document processing, chunking, embedding, and semantic search with support for various reranking strategies
-  - **memory/** - Memory systems for storing and retrieving conversation history, vector data, and application state across sessions
-  - **evals/** - Evaluation frameworks for measuring LLM performance with metrics for accuracy, relevance, toxicity, and other quality dimensions
-  - **mcp/** - Model Context Protocol implementation for standardized communication with AI models, enabling tool usage and structured responses across different providers
+- **packages/** - 构成 Mastra 框架的核心包
+  - **core/** - Mastra 框架的基础，提供基本组件，包括 Agent 系统、LLM 抽象、工作流编排、向量存储、内存管理和工具基础设施
+  - **cli/** - 命令行界面，用于创建、运行和管理 Mastra 项目，包括用于测试 Agents 和 Workflows 的交互式 playground UI
+  - **deployer/** - 用于将 Mastra 应用程序部署到各种环境的服务器基础设施和构建工具，具有用于 Agents、Workflows 和内存管理的 API 端点
+  - **rag/** - 检索增强生成工具，用于文档处理、分块、嵌入和语义搜索，支持各种重排序策略
+  - **memory/** - 用于存储和检索会话间对话历史、向量数据和应用程序状态的内存系统
+  - **evals/** - 用于测量 LLM 性能的评估框架，具有准确性、相关性、毒性等质量维度的指标
+  - **mcp/** - Model Context Protocol 实现，用于与 AI 模型进行标准化通信，支持跨不同提供商的工具使用和结构化响应
 
-- **deployers/** - Platform-specific deployment adapters for services like Vercel, Netlify, and Cloudflare, handling environment configuration and serverless function deployment
-- **stores/** - Storage adapters for various vector and key-value databases, providing consistent APIs for data persistence across different storage backends
+- **deployers/** - 用于 Vercel、Netlify 和 Cloudflare 等服务的特定平台部署适配器，处理环境配置和无服务器函数部署
+- **stores/** - 用于各种向量和键值数据库的存储适配器，为不同存储后端提供一致的数据持久化 API
 
-- **voice/** - Speech-to-text and voice processing capabilities for real-time transcription and voice-based interactions
-- **client-sdks/** - Client libraries for different platforms and frameworks that provide type-safe interfaces to interact with Mastra services
-- **examples/** - Example applications demonstrating various Mastra features including agents, workflows, memory systems, and integrations with different frameworks
+- **voice/** - 语音到文本和语音处理功能，用于实时转录和基于语音的交互
+- **client-sdks/** - 用于不同平台和框架的客户端库，提供类型安全的接口与 Mastra 服务交互
+- **examples/** - 演示各种 Mastra 功能的示例应用程序，包括 Agents、Workflows、内存系统以及与不同框架的集成
 
-## Getting Started
+## 入门指南
 
-### Setting Up Your Development Environment
+### 设置开发环境
 
-1. **Clone the repository**:
+1. **克隆仓库**：
 
    ```bash
    git clone https://github.com/mastra-ai/mastra.git
    cd mastra
    ```
 
-2. **Enable corepack** (ensures correct pnpm version):
+2. **启用 corepack**（确保正确的 pnpm 版本）：
 
    ```bash
    corepack enable
    ```
 
-3. **Install dependencies and build initial packages**:
+3. **安装依赖并构建初始包**：
 
    ```bash
    pnpm run setup
    ```
 
-   This command installs all dependencies and builds the CLI package, which is required for other packages.
+   此命令安装所有依赖并构建 CLI 包，这是其他包所必需的。
 
-### Building Packages
+### 构建包
 
-If you run into the following error during a build:
+如果在构建过程中遇到以下错误：
 
 ```text
 Error [ERR_WORKER_OUT_OF_MEMORY]: Worker terminated due to reaching memory limit: JS heap out of memory
 ```
 
-you can increase Node’s heap size by prepending your build command with:
+您可以通过在构建命令前添加以下内容来增加 Node 的堆大小：
 
 ```bash
 NODE_OPTIONS="--max-old-space-size=4096" pnpm build
 ```
 
-- **Build all packages**:
+- **构建所有包**：
 
   ```bash
   pnpm build
   ```
 
-- **Build specific package groups**:
+- **构建特定包组**：
 
   ```bash
-  pnpm build:packages         # All core packages
-  pnpm build:deployers        # All deployment adapters
-  pnpm build:combined-stores  # All vector and data stores
-  pnpm build:speech           # All speech processing packages
-  pnpm build:clients          # All client SDKs
+  pnpm build:packages         # 所有核心包
+  pnpm build:deployers        # 所有部署适配器
+  pnpm build:combined-stores  # 所有向量和数据存储
+  pnpm build:speech           # 所有语音处理包
+  pnpm build:clients          # 所有客户端 SDK
   ```
 
-- **Build individual packages**:
+- **构建单个包**：
   ```bash
-  pnpm build:core             # Core framework package
-  pnpm build:cli              # CLI and playground package
-  pnpm build:deployer         # Deployer package
-  pnpm build:rag              # RAG package
-  pnpm build:memory           # Memory package
-  pnpm build:evals            # Evaluation framework package
-  pnpm build:docs-mcp         # MCP documentation server
+  pnpm build:core             # 核心框架包
+  pnpm build:cli              # CLI 和 playground 包
+  pnpm build:deployer         # Deployer 包
+  pnpm build:rag              # RAG 包
+  pnpm build:memory           # 内存包
+  pnpm build:evals            # 评估框架包
+  pnpm build:docs-mcp         # MCP 文档服务器
   ```
 
-## Testing
+## 测试
 
-Mastra uses Vitest for testing. To run tests:
+Mastra 使用 Vitest 进行测试。要运行测试：
 
-1. **Ensure development services are running**:
+1. **确保开发服务正在运行**：
 
    ```bash
    pnpm run dev:services:up
    ```
 
-2. **Set up environment variables**:
+2. **设置环境变量**：
 
    ```bash
    cp .env.example .env
    ```
 
-   Add any necessary API keys to the `.env` file.
+   将任何必要的 API 密钥添加到 `.env` 文件中。
 
-3. **Run tests**:
-   - All tests:
+3. **运行测试**：
+   - 所有测试：
      ```bash
      pnpm test
      ```
-   - Specific package tests:
+   - 特定包测试：
      ```bash
-     pnpm test:core             # Core package tests
-     pnpm test:cli              # CLI tests
-     pnpm test:rag              # RAG tests
-     pnpm test:memory           # Memory tests
-     pnpm test:evals            # Evals tests
-     pnpm test:clients          # Client SDK tests
-     pnpm test:combined-stores  # Combined stores tests
+     pnpm test:core             # 核心包测试
+     pnpm test:cli              # CLI 测试
+     pnpm test:rag              # RAG 测试
+     pnpm test:memory           # 内存测试
+     pnpm test:evals            # Evals 测试
+     pnpm test:clients          # 客户端 SDK 测试
+     pnpm test:combined-stores  # 组合存储测试
      ```
-   - Watch mode (for development):
+   - 监视模式（用于开发）：
      ```bash
      pnpm test:watch
      ```
 
-## Contributing
+## 贡献
 
-1. **Create a branch for your changes**:
+1. **为您的更改创建分支**：
 
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make your changes and ensure tests pass**:
+2. **进行更改并确保测试通过**：
 
    ```bash
    pnpm test
    ```
 
-3. **Create a changeset** (for version management):
+3. **创建 changeset**（用于版本管理）：
 
    ```bash
    pnpm changeset
    ```
 
-   Follow the prompts to describe your changes.
+   按照提示描述您的更改。
 
-4. **Open a pull request** with your changes.
+4. **提交 Pull Request** 包含您的更改。
 
-## Documentation
+## 文档
 
-The documentation site is built from the `/docs` directory. To contribute to documentation:
+文档站点从 `/docs` 目录构建。要为文档做贡献：
 
-1. Make changes to the relevant Markdown files in the `/docs` directory
-2. Test your changes locally
-3. Submit a pull request with your documentation updates
+1. 修改 `/docs` 目录中相关的 Markdown 文件
+2. 在本地测试您的更改
+3. 提交包含文档更新的 Pull Request
 
-## Need Help?
+## 需要帮助？
 
-Join the [Mastra Discord community](https://discord.gg/BTYqqHKUrf) for support and discussions.
+加入 [Mastra Discord 社区](https://discord.gg/BTYqqHKUrf) 获取支持和讨论。

@@ -1,29 +1,29 @@
-# How to Add a New Template
+# 如何添加新模板
 
-To add a new template to the `templates/` directory, follow these steps:
+要将新模板添加到 `templates/` 目录，请按以下步骤操作：
 
-## 1. Create a New Template Folder
+## 1. 创建新模板文件夹
 
-- Inside the `templates/` directory, create a new folder named after your template (e.g., `my-new-template/`).
+- 在 `templates/` 目录内，创建一个以模板命名的新文件夹（例如 `my-new-template/`）。
 
-## 2. Required Files
+## 2. 必需文件
 
-Your template folder **must** include the following files:
+您的模板文件夹**必须**包含以下文件：
 
 ### a. `package.json`
 
-- Use `@ai-sdk/openai` as the LLM provider in your code/config.
-- All `@mastra/*` dependencies should be set to `"latest"` in the `dependencies` section.
-- `mastra` devDependency should be set to `"latest"` in the `devDependencies` section.
-- The `description` field should clearly describe what the template does.
+- 在您的代码/配置中使用 `@ai-sdk/openai` 作为 LLM 提供程序。
+- 所有 `@mastra/*` 依赖项应在 `dependencies` 部分设置为 `"latest"`。
+- `mastra` devDependency 应在一个 `devDependencies` 部分设置为 `"latest"`。
+- `description` 字段应清晰描述模板的作用。
 
-**Example:**
+**示例：**
 
 ```json
 {
   "name": "my-new-template",
   "version": "1.0.0",
-  "description": "A template that demonstrates how to build an OpenAI-powered agent using Mastra.",
+  "description": "一个演示如何使用 Mastra 构建 OpenAI 驱动的代理的模板。",
   "main": "index.js",
   "license": "ISC",
   "type": "module",
@@ -48,10 +48,10 @@ Your template folder **must** include the following files:
 
 ### b. `.env.example`
 
-- List all required environment variables, such as API keys and configuration values.
-- Use `***` as the default value for secrets or required fields.
+- 列出所有必需的环境变量，如 API 密钥和配置值。
+- 对机密或必需字段使用 `***` 作为默认值。
 
-**Example:**
+**示例：**
 
 ```
 OPENAI_API_KEY=***
@@ -60,39 +60,39 @@ OTHER_REQUIRED_VARIABLE=***
 
 ### c. `README.md`
 
-- Clearly explain what the template does, its overview, and any setup steps.
-- Mention that the template uses OpenAI as the LLM provider.
-- List all required environment variables and what they are for.
+- 清晰解释模板的作用、概览和任何设置步骤。
+- 提及模板使用 OpenAI 作为 LLM 提供程序。
+- 列出所有必需的环境变量及其用途。
 
-**Example:**
+**示例：**
 
 ```markdown
-# My New Template
+# 我的新模板
 
-This template demonstrates how to build an agent using OpenAI as the LLM provider with Mastra.
+这个模板演示如何使用 Mastra 与 OpenAI 作为 LLM 提供程序构建代理。
 
-## Overview
+## 概览
 
-The overview of the template.
+模板的概览。
 
-## Setup
+## 设置
 
-1. Copy `.env.example` to `.env` and fill in your API keys.
-2. Install dependencies: `pnpm install`
-3. Run the project: `pnpm dev`.
+1. 将 `.env.example` 复制到 `.env` 并填写您的 API 密钥。
+2. 安装依赖项：`pnpm install`
+3. 运行项目：`pnpm dev`。
 
-## Environment Variables
+## 环境变量
 
-- `OPENAI_API_KEY`: Your OpenAI API key. [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-- `OTHER_REQUIRED_VARIABLE`: Description of what this variable is for.
+- `OPENAI_API_KEY`：您的 OpenAI API 密钥。[https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- `OTHER_REQUIRED_VARIABLE`：描述此变量的用途。
 ```
 
-## 3. Additional Recommendations
+## 3. 额外建议
 
-- Include any scripts or configuration files needed to run the template.
-- Keep your code clean and well-commented.
-- Test your template before submitting.
+- 包含运行模板所需的任何脚本或配置文件。
+- 保持代码清洁且注释充分。
+- 提交前先测试您的模板。
 
 ---
 
-By following these steps, you’ll ensure your template is easy to use and consistent with the rest of the repository.
+通过遵循这些步骤，您将确保您的模板易于使用且与存储库的其余部分保持一致。

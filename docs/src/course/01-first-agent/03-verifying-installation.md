@@ -1,20 +1,20 @@
-# Verifying Your Mastra Installation
+# 验证您的 Mastra 安装
 
-Before we begin building our agent, let's make sure you have the right development environment set up. Let's check if you have Node.js 18.x or later installed.
+在开始构建我们的 agent 之前，让我们确保您设置了正确的开发环境。让我们检查您是否安装了 Node.js 18.x 或更高版本。
 
-Then, let's check if @mastra/core is in the package.json and there is a src/mastra directory. If so, you can skip this step.
+然后，让我们检查 package.json 中是否有 @mastra/core，并且是否有 src/mastra 目录。如果有，您可以跳过此步骤。
 
-If you haven't installed Mastra yet, you can do so by running:
+如果您尚未安装 Mastra，可以通过运行以下命令进行安装：
 
 ```bash
 npm -y create mastra@latest
 ```
 
-If you do need to install mastra, follow the on-screen prompts and make sure to:
+如果您确实需要安装 mastra，请按照屏幕上的提示操作，并确保：
 
-- Opt-in to installing both Agents and Workflows
-- Say yes to installing tools
-- Select OpenAI, Anthropic, or Google for your model
-- Say yes to adding an example
+- 选择安装 Agents 和 Workflows
+- 同意安装 tools
+- 为您的 model 选择 OpenAI、Anthropic 或 Google
+- 同意添加示例
 
-You'll also need to add your OpenAI, Anthropic, or Google API key to the project.
+您还需要将您的 OpenAI、Anthropic 或 Google API key 添加到项目中。

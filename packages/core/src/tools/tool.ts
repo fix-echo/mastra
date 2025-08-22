@@ -25,11 +25,11 @@ export class Tool<
     this.outputSchema = opts.outputSchema;
     this.mastra = opts.mastra;
 
-    // Wrap the execute function with validation if it exists
+    // 如果存在则包装execute函数并添加验证
     if (opts.execute) {
       const originalExecute = opts.execute;
       this.execute = async (context: TContext, options?: ToolExecutionOptions) => {
-        // Validate input if schema exists
+        // 如果存在schema则验证输入
         const { data, error } = validateToolInput(this.inputSchema, context, this.id);
         if (error) {
           return error as any;
